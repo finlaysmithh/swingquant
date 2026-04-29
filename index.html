@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SwingQuant</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --gold:#D4A84B;
+  --dark:#0A0A0F;
+  --card:#111118;
+  --border:#1A1A25;
+  --text:#E8E8EC;
+  --muted:#6B6B7B;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  font-family:'Outfit',sans-serif;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(212,168,75,0.12), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(59,130,246,0.08), transparent 40%),
+    url('https://images.unsplash.com/photo-1642790106117-e829e14a795f?q=80&w=1600') center/cover no-repeat;
+  background-blend-mode: overlay;
+  color:var(--text);
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.75);
+}
+
+.container{
+  position:relative;
+  z-index:2;
+  width:100%;
+  max-width:900px;
+  text-align:center;
+  background:rgba(17,17,24,0.85);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:50px 30px;
+  backdrop-filter: blur(10px);
+}
+
+/* 🔥 LOGO FIXED HERE */
+.logo{
+  width:220px;
+  max-width:80%;
+  height:auto;
+  margin-bottom:20px;
+}
+
+/* removed old circle styling */
+
+h1{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:64px;
+  color:var(--gold);
+  margin-bottom:10px;
+}
+
+p{
+  color:var(--muted);
+  margin-bottom:40px;
+  max-width:600px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.btns{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+.box{
+  background:rgba(17,17,24,0.9);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:30px;
+  text-align:left;
+  transition:0.3s;
+  min-height:160px;
+  position:relative;
+  overflow:hidden;
+}
+
+.box:before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg, transparent, rgba(212,168,75,0.15), transparent);
+  opacity:0;
+  transition:0.3s;
+}
+
+.box:hover:before{
+  opacity:1;
+}
+
+.box:hover{
+  transform:translateY(-6px);
+  border-color:var(--gold);
+  box-shadow:0 15px 40px rgba(212,168,75,0.2);
+}
+
+.title{
+  font-size:20px;
+  font-weight:700;
+  margin-bottom:8px;
+}
+
+.desc{
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.5;
+}
+
+.primary{
+  border-color:rgba(212,168,75,0.4);
+}
+
+.secondary{
+  border-color:rgba(59,130,246,0.4);
+}
+
+.footer{
+  margin-top:30px;
+  font-size:12px;
+  color:var(--muted);
+}
+
+@media(max-width:700px){
+  .btns{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<div class="container">
+
+  <!-- ✅ YOUR REAL LOGO -->
+  <img src="logo.png" class="logo">
+
+  <h1>SwingQuant</h1>
+
+  <p>
+    Research-driven trading platform. Build strategies, validate edge, and deploy execution systems — not guesswork.
+  </p>
+
+  <div class="btns">
+
+    <a href="swingquant_v35_rejection_statistics.html">
+      <div class="box primary">
+        <div class="title">Trading Research Lab</div>
+        <div class="desc">
+          Strategy building, backtesting logic, rejection systems and execution discipline.
+        </div>
+      </div>
+    </a>
+
+    <a href="index-8.html">
+      <div class="box secondary">
+        <div class="title">SwingQuant Telegram Bot</div>
+        <div class="desc">
+          Live trading alerts and automated signal delivery through Telegram.
+        </div>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="footer">
+    No signals hype. No shortcuts. Just structured trading research.
+  </div>
+
+</div>
+
+</body>
+</html>
