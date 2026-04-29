@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SwingQuant — Research-First Trading Practice Lab</title>
+<meta name="description" content="SwingQuant — research-first quant trading curriculum and strategy hygiene sandbox. 25 phases of evidence-gated learning, idea-rejection checklist, walk-forward validation, no signals, no profitability promises.">
+<meta property="og:title" content="SwingQuant — Quant Research Education & Strategy Hygiene">
+<meta property="og:description" content="Evidence-gated quant trading curriculum + strategy rejection sandbox. Most strategies fail honest scrutiny — this tool helps you find out which ones.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="generator" content="SwingQuant v36">
+<title>SwingQuant — Quant Research Education & Strategy Hygiene</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -314,6 +320,54 @@ body{font-family:var(--f-body);background:radial-gradient(circle at top right,rg
 .pass-rule{background:rgba(34,197,94,.07);border:1px solid rgba(34,197,94,.2);border-left:4px solid var(--green);border-radius:var(--r);padding:13px;margin:10px 0;font-size:12.5px;color:var(--muted);line-height:1.55}
 @media(max-width:950px){.forward-shell{grid-template-columns:1fr}}
 
+
+/* ========== v36 layout upgrade ========== */
+body.sb-collapsed .sb{transform:translateX(-100%)}
+body.sb-collapsed .mn{margin-left:0}
+body.sb-collapsed .disc{margin-left:32px}
+.tb-toggle{background:transparent;border:none;color:var(--muted);font-size:20px;cursor:pointer;padding:6px 10px;border-radius:8px;transition:.18s;margin-right:10px}
+.tb-toggle:hover{background:var(--card);color:var(--gold)}
+.tb-left{display:flex;align-items:center;gap:6px}
+.pg{padding-top:32px}
+@media(min-width:801px){
+  .mn{transition:margin-left .25s ease}
+  .sb{transition:transform .25s ease}
+}
+@media(max-width:800px){
+  body.sb-collapsed .disc{margin-left:20px}
+  .tb-toggle{display:inline-block}
+}
+/* Bottom nav for mobile (lightweight - 5 most used) */
+.mob-bottom{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(6,6,9,.97);border-top:1px solid var(--card-border);z-index:90;padding:6px 0;backdrop-filter:blur(14px)}
+.mob-bottom-inner{display:flex;justify-content:space-around}
+.mob-bottom button{background:transparent;border:none;color:var(--muted);font-size:11px;padding:8px 4px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;flex:1}
+.mob-bottom button.ac{color:var(--gold)}
+.mob-bottom button .mb-i{font-size:18px}
+@media(max-width:800px){
+  .mob-bottom{display:block}
+  .mn{padding-bottom:70px}
+  .pg{padding-top:24px;padding-bottom:24px}
+  .disc{margin-bottom:90px}
+}
+/* Print stylesheet */
+@media print{
+  .sb,.tb,.mob-bottom,.mob-tog,.tb-toggle{display:none!important}
+  .mn{margin-left:0!important}
+  body{background:#fff!important;color:#000!important}
+  .pg{display:block!important;page-break-after:always}
+  a:after{content:" ("attr(href)")";font-size:10px}
+}
+/* DSR result panel */
+.dsr-result{background:var(--input);border:1px solid var(--card-border);border-radius:var(--r);padding:18px;margin-top:14px}
+.dsr-bar{height:10px;border-radius:5px;background:linear-gradient(90deg,#EF4444 0%,#F59E0B 50%,#22C55E 100%);position:relative;margin:12px 0}
+.dsr-marker{position:absolute;top:-5px;width:4px;height:20px;background:white;border:1px solid #000;border-radius:2px}
+/* Spaced rep due badge */
+.due-badge{display:inline-block;background:var(--gold);color:#0a0a0f;font-size:9px;font-weight:800;padding:2px 7px;border-radius:10px;margin-left:6px}
+/* Backup panel */
+.backup-panel{background:linear-gradient(180deg,rgba(212,168,75,.05),rgba(17,17,24,.4)),var(--card);border:1px solid var(--card-border);border-radius:var(--r);padding:18px;margin-top:18px}
+.backup-panel h3{color:var(--gold);font-size:15px;margin-bottom:8px}
+.backup-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+
 </style>
 </head>
 <body>
@@ -325,6 +379,7 @@ body{font-family:var(--f-body);background:radial-gradient(circle at top right,rg
     <div class="sb-sec">Overview</div>
     <div class="ni ac" data-p="dash" onclick="go('dash')"><span class="ni-i">◈</span>Dashboard</div>
     <div class="ni" data-p="pathways" onclick="go('pathways')"><span class="ni-i">⌁</span>Start Here<span class="ni-b">NEW</span></div>
+    <div class="ni" data-p="p2p" onclick="go('p2p')" style="border-left:3px solid #8B5CF6;background:linear-gradient(90deg,rgba(139,92,246,.06),rgba(17,17,24,.7))"><span class="ni-i">🛤</span>Path to Profitable<span class="ni-b" style="background:#8B5CF6;color:#fff">CORE</span></div>
     <div class="ni" data-p="engine" onclick="go('engine')"><span class="ni-i">🧪</span>Practice Tracker<span class="ni-b">GATED</span></div>
     <div class="ni" data-p="director" onclick="go('director')"><span class="ni-i">🧠</span>Research Checklist</div>
     <div class="sb-sec">Learn</div>
@@ -349,9 +404,11 @@ body{font-family:var(--f-body);background:radial-gradient(circle at top right,rg
 </aside>
 <main class="mn">
 <header class="tb">
-  <button class="mob-tog" onclick="togSB()">☰</button>
-  <div class="tb-t" id="pgT">Dashboard</div>
-  <div class="tb-r"><div class="badge badge-g">Evidence Lv <span id="evLvlBadge">0</span></div><div class="badge badge-c"><span id="evItemsBadge">0</span> items</div></div>
+  <div class="tb-left">
+    <button class="tb-toggle" onclick="togSBDesk()" title="Toggle sidebar (Ctrl+B)" aria-label="Toggle sidebar">☰</button>
+    <div class="tb-t" id="pgT">Dashboard</div>
+  </div>
+  <div class="tb-r"><div class="badge badge-g">Evidence Lv <span id="evLvlBadge">0</span></div><div class="badge badge-c"><span id="evItemsBadge">0</span> items</div><div class="badge" id="dueBadge" style="display:none;color:var(--amber)">📅 <span id="dueCount">0</span> due</div></div>
 </header>
 
 <section class="pg ac" id="pg-dash">
@@ -406,6 +463,11 @@ body{font-family:var(--f-body);background:radial-gradient(circle at top right,rg
   <div id="pathwaysC"></div>
 </section>
 
+<section class="pg" id="pg-p2p">
+  <div class="sh"><div class="st">PATH TO PROFITABLE</div><div class="sd">A linear, calendar-time-gated pipeline from idea to consistent live trading. No stage can be skipped. No criteria can be brute-forced.</div></div>
+  <div id="p2pC"></div>
+</section>
+
 <section class="pg" id="pg-engine"><div class="sh"><div class="st">PRACTICE EVIDENCE TRACKER</div><div class="sd">This is a practice ledger, not proof of trading skill. Progression depends on completed exercises, written hypotheses, CSV hygiene tests, OOS checks, trade reviews, strategy-review work, risk planning and behavioural review.</div></div><div id="engC"></div></section>
 
 <section class="pg" id="pg-director">
@@ -436,8 +498,8 @@ let S=D.g('st',{evidencePoints:0,phase:0,les:0,qzS:{},lesD:[],skills:{micro:0,st
 if(!S.evidencePoints){S.evidencePoints=0}
 const sv=()=>D.s('st',S),recordEvidence=n=>{S.evidencePoints=(S.evidencePoints||0)+n;sv();uTB()};
 function uTB(){const snap=typeof evidenceSnapshot==='function'?evidenceSnapshot():{total:0,level:0};const lv=document.getElementById('evLvlBadge'),it=document.getElementById('evItemsBadge');if(lv)lv.textContent=snap.level;if(it)it.textContent=snap.total}
-const PT={dash:'Dashboard',pathways:'Start Here',engine:'Practice Tracker',academy:'Academy',lesson:'Lessons',quiz:'Quiz Lab',python:'Python Templates',strategy:'Strategy Builder',courtroom:'Strategy Review',backtest:'Research Sandbox',macro:'Quant Macro & Regime Lab',playbooks:'Playbooks',risk:'Risk & Sizing Lab',sim:'Replay Drill',journal:'Research Journal',glossary:'Glossary'};
-function go(id){document.querySelectorAll('.pg').forEach(p=>p.classList.remove('ac'));document.querySelectorAll('.ni').forEach(n=>n.classList.remove('ac'));const el=document.getElementById('pg-'+id);if(el)el.classList.add('ac');document.querySelectorAll(`.ni[data-p="${id}"]`).forEach(n=>n.classList.add('ac'));document.getElementById('pgT').textContent=PT[id]||id;if(id==='pathways')rPathways();if(id==='academy')rMods();if(id==='lesson')rLes();if(window.innerWidth<800)togSB(false)}
+const PT={dash:'Dashboard',pathways:'Start Here',p2p:'Path to Profitable',engine:'Practice Tracker',academy:'Academy',lesson:'Lessons',quiz:'Quiz Lab',python:'Python Templates',strategy:'Strategy Builder',courtroom:'Strategy Review',backtest:'Research Sandbox',macro:'Quant Macro & Regime Lab',playbooks:'Playbooks',risk:'Risk & Sizing Lab',sim:'Replay Drill',journal:'Research Journal',glossary:'Glossary'};
+function go(id){document.querySelectorAll('.pg').forEach(p=>p.classList.remove('ac'));document.querySelectorAll('.ni').forEach(n=>n.classList.remove('ac'));const el=document.getElementById('pg-'+id);if(el)el.classList.add('ac');document.querySelectorAll(`.ni[data-p="${id}"]`).forEach(n=>n.classList.add('ac'));document.getElementById('pgT').textContent=PT[id]||id;if(id==='pathways')rPathways();if(id==='academy')rMods();if(id==='lesson')rLes();if(id==='p2p'&&typeof renderPathToProfitable==='function')renderPathToProfitable();if(window.innerWidth<800)togSB(false)}
 function togSB(force){const sb=document.getElementById('sb'),ov=document.getElementById('sbOv');if(force===false){sb.classList.remove('op');ov.classList.remove('ac')}else{sb.classList.toggle('op');ov.classList.toggle('ac')}}
 function sTab(g,t,b){document.querySelectorAll(`[id^="${g}-"]`).forEach(x=>x.classList.remove('ac'));document.getElementById(g+'-'+t).classList.add('ac');if(b){b.closest('.tabs').querySelectorAll('.tab').forEach(x=>x.classList.remove('ac'));b.classList.add('ac')}}
 
@@ -1666,7 +1728,7 @@ def vectorized_backtest(df, fast=35, slow=150, cost_bps=2.5):
     cost = turnover * (cost_bps / 10000)
     df["strategy"] = df["position"] * df["log_ret"] - cost
     sharpe = df["strategy"].mean() / df["strategy"].std() * np.sqrt(252)
-    equity = np.erecordEvidence(df["strategy"].cumsum())
+    equity = np.exp(df["strategy"].cumsum())
     return equity, sharpe</pre></div></div>
 <div class="tc" id="py-pyS"><div class="cd"><h3 style="color:var(--gold);margin-bottom:10px">ADF Stationarity Test</h3><pre class="code">from statsmodels.tsa.stattools import adfuller
 import numpy as np
@@ -2587,9 +2649,9 @@ function initMacro(){document.getElementById('macC').innerHTML=`
   `;rMacroVariables();rMacroMatrix();rMacroExamples();rMacroTasks();renderSavedMacroTheses();macroRunScenario();}
 function initPlaybooks(){const mk={ES:{name:'Equities / ES / NQ',drivers:[['🧬','Gamma Exposure','Positive gamma dampens; negative gamma accelerates.'],['📊','Breadth','Index strength without breadth can be fragile.'],['🏦','Real Yields','Growth equities are sensitive to discount-rate repricing.']],strategies:['Condition momentum systems on volatility and gamma regime.','Use factor attribution to separate alpha from equity beta.','Avoid fading negative-gamma expansion without evidence of absorption.'],avoid:['Do not ignore options-market structure.','Do not assume NQ and ES have identical volatility/cap concentration.']},FX:{name:'FX Majors',drivers:[['🏦','Rate Differentials','2-year yield spreads often dominate.'],['🔁','Carry Unwinds','Crowded carry can unwind violently during volatility spikes.'],['🗣️','Forward Guidance','Markets price expected terminal rate, not just current rate.']],strategies:['Align with rate-differential changes.','Stress test against policy events.','Separate carry, momentum and funding regimes.'],avoid:['Do not trade FX as generic chart patterns.','Do not hold carry into unpriced event risk.']},GC:{name:'Gold / Rates',drivers:[['📉','Real Yields','Lower real yields reduce opportunity cost.'],['💵','Dollar Liquidity','USD spikes can pressure metals.'],['🏦','Central Bank Demand','Reserve accumulation can sustain demand.']],strategies:['Model gold through real yields and DXY.','Use positioning as context, not timing.','Avoid buying “inflation” if real yields are rising.'],avoid:['Do not ignore rates.','Do not assume safe-haven demand always dominates.']},OL:{name:'Oil / Commodities',drivers:[['🛢️','Term Structure','Backwardation/contango reveals inventory pressure.'],['📦','Inventories','EIA/API surprises can trigger repricing.'],['🌎','Growth Demand','Global activity shifts demand expectations.']],strategies:['Condition trades on curve structure.','Use event-specific rules around inventories.','Model supply shock vs demand shock separately.'],avoid:['Do not hold blind through inventory releases.','Do not treat oil as just an index proxy.']},CR:{name:'Crypto',drivers:[['💧','Liquidity Cycle','Global liquidity and risk appetite dominate.'],['🏦','Funding & Basis','Perpetual funding and futures basis reveal positioning.'],['⚠️','Venue Risk','Exchange, custody and regulatory risks are material.']],strategies:['Use funding/basis extremes cautiously.','Size smaller due to gap and venue risk.','Separate BTC beta from altcoin idiosyncrasy.'],avoid:['Do not assume 24/7 liquidity equals safe liquidity.','Do not use equity-index risk assumptions unchanged.']}};Object.entries(mk).forEach(([id,m])=>{const el=document.getElementById('pb-pb'+id);if(!el)return;el.innerHTML=`<div class="cg cg2"><div class="cd"><h3 style="font-size:18px;color:var(--gold);margin-bottom:12px">${m.name}</h3>${m.drivers.map(d=>`<div class="pb-driver"><div class="pb-driver-icon">${d[0]}</div><div><h4>${d[1]}</h4><p>${d[2]}</p></div></div>`).join('')}</div><div class="cd"><h3 style="font-size:18px;color:var(--gold);margin-bottom:12px">Research Directions</h3>${m.strategies.map(s=>`<div class="pb-strat">${s}</div>`).join('')}<h4 style="font-size:13px;color:var(--red);margin:16px 0 8px">Avoid</h4>${m.avoid.map(s=>`<div class="pb-avoid">${s}</div>`).join('')}</div></div>`})}
 
-function initRisk(){document.getElementById('rk-rkC').innerHTML=`<div class="cg cg2"><div class="cd"><h3 style="color:var(--gold);margin-bottom:12px">Position Sizer</h3><div class="fg"><label class="fl">Account</label><input class="fi" type="number" id="rkB" value="10000" oninput="cPos()"></div><div class="fg"><label class="fl">Risk %</label><input class="fi" type="number" id="rkP" value="1" step=".1" oninput="cPos()"></div><div class="fg"><label class="fl">Stop Distance</label><input class="fi" type="number" id="rkS" value="50" oninput="cPos()"></div><div class="fg"><label class="fl">Value / Point</label><input class="fi" type="number" id="rkV" value="10" oninput="cPos()"></div></div><div class="cd"><div class="sl">Risk Amount</div><div class="sv" id="rkA" style="color:var(--gold)">£100</div><div class="sl">Position Size</div><div class="sv" id="rkL" style="color:var(--cyan)">0.20</div><div class="hard-warning">If your sizing cannot survive a normal losing streak, your edge is irrelevant.</div></div></div>`;cPos();document.getElementById('rk-rkV').innerHTML=`<div class="cg cg2"><div class="cd"><h3 style="color:var(--gold);margin-bottom:12px">VaR / Expected Shortfall</h3><div class="fg"><label class="fl">Portfolio Value</label><input class="fi" type="number" id="vBal" value="10000" oninput="cVaR()"></div><div class="fg"><label class="fl">Daily Volatility %</label><input class="fi" type="number" id="vVol" value="1.2" step=".1" oninput="cVaR()"></div><div class="fg"><label class="fl">Tail Multiplier for CVaR</label><input class="fi" type="number" id="vTail" value="1.35" step=".05" oninput="cVaR()"></div></div><div class="cd"><div class="sl">95% Parametric VaR</div><div class="sv" id="vVar" style="color:var(--amber)">—</div><div class="sl">Expected Shortfall</div><div class="sv" id="vCvar" style="color:var(--red)">—</div><p style="font-size:12px;color:var(--muted)">Approximate educational calculation. Real portfolios require covariance and distribution modelling.</p></div></div>`;cVaR();document.getElementById('rk-rkR').innerHTML=`<div class="cd"><div class="cg cg2"><div><div class="fg"><label class="fl">Win Rate %</label><input class="fi" type="number" id="rrW" value="50" oninput="cRR()"></div><div class="fg"><label class="fl">Avg Win R</label><input class="fi" type="number" id="rrA" value="1.5" step=".1" oninput="cRR()"></div><div class="fg"><label class="fl">Risk %</label><input class="fi" type="number" id="rrP" value="1" step=".1" oninput="cRR()"></div></div><div><div class="sl">Expectancy</div><div class="sv" id="rrE">—</div><div class="sl">Ruin Approximation</div><div class="sv" id="rrR">—</div></div></div></div>`;cRR()}
+function initRisk(){document.getElementById('rk-rkC').innerHTML=`<div class="cg cg2"><div class="cd"><h3 style="color:var(--gold);margin-bottom:12px">Position Sizer</h3><div class="fg"><label class="fl">Account</label><input class="fi" type="number" id="rkB" value="10000" oninput="cPos()"></div><div class="fg"><label class="fl">Risk %</label><input class="fi" type="number" id="rkP" value="1" step=".1" oninput="cPos()"></div><div class="fg"><label class="fl">Stop Distance</label><input class="fi" type="number" id="rkS" value="50" oninput="cPos()"></div><div class="fg"><label class="fl">Value / Point</label><input class="fi" type="number" id="rkV" value="10" oninput="cPos()"></div></div><div class="cd"><div class="sl">Risk Amount</div><div class="sv" id="rkA" style="color:var(--gold)">£100</div><div class="sl">Position Size</div><div class="sv" id="rkL" style="color:var(--cyan)">0.20</div><div class="hard-warning">If your sizing cannot survive a normal losing streak, your edge is irrelevant.</div></div></div>`;cPos();document.getElementById('rk-rkV').innerHTML=`<div class="cg cg2"><div class="cd"><h3 style="color:var(--gold);margin-bottom:12px">VaR / Expected Shortfall</h3><div class="fg"><label class="fl">Portfolio Value</label><input class="fi" type="number" id="vBal" value="10000" oninput="cVaR()"></div><div class="fg"><label class="fl">Daily Volatility %</label><input class="fi" type="number" id="vVol" value="1.2" step=".1" oninput="cVaR()"></div><div class="fg"><label class="fl">Tail Multiplier for CVaR</label><input class="fi" type="number" id="vTail" value="1.35" step=".05" oninput="cVaR()"></div></div><div class="cd"><div class="sl">95% Parametric VaR</div><div class="sv" id="vVar" style="color:var(--amber)">—</div><div class="sl">Expected Shortfall</div><div class="sv" id="vCvar" style="color:var(--red)">—</div><p style="font-size:12px;color:var(--muted)">Educational approximation. Gaussian analytical CVaR/VaR ratio at 95% is ~1.254. Higher multipliers approximate fat tails. Real portfolios require historical-simulation or full distributional modelling.</p></div></div>`;cVaR();document.getElementById('rk-rkR').innerHTML=`<div class="cd"><div class="cg cg2"><div><div class="fg"><label class="fl">Win Rate %</label><input class="fi" type="number" id="rrW" value="50" oninput="cRR()"></div><div class="fg"><label class="fl">Avg Win R</label><input class="fi" type="number" id="rrA" value="1.5" step=".1" oninput="cRR()"></div><div class="fg"><label class="fl">Risk %</label><input class="fi" type="number" id="rrP" value="1" step=".1" oninput="cRR()"></div></div><div><div class="sl">Expectancy</div><div class="sv" id="rrE">—</div><div class="sl">Ruin Approximation</div><div class="sv" id="rrR">—</div></div></div></div>`;cRR()}
 function cPos(){const b=+document.getElementById('rkB').value||0,p=+document.getElementById('rkP').value||0,s=+document.getElementById('rkS').value||1,v=+document.getElementById('rkV').value||1,a=b*p/100,l=a/(s*v);document.getElementById('rkA').textContent='£'+a.toFixed(2);document.getElementById('rkL').textContent=l.toFixed(3)}
-function cVaR(){const b=+document.getElementById('vBal').value||0,vol=(+document.getElementById('vVol').value||0)/100,tail=+document.getElementById('vTail').value||1.35;const v=b*vol*1.65,cv=v*tail;document.getElementById('vVar').textContent='£'+v.toFixed(2);document.getElementById('vCvar').textContent='£'+cv.toFixed(2)}
+function cVaR(){const b=+document.getElementById('vBal').value||0,vol=(+document.getElementById('vVol').value||0)/100,tail=+document.getElementById('vTail').value||1.35;const v=b*vol*1.6449,cv=v*tail;document.getElementById('vVar').textContent='£'+v.toFixed(2);document.getElementById('vCvar').textContent='£'+cv.toFixed(2)}
 function cRR(){const w=(+document.getElementById('rrW').value||50)/100,a=+document.getElementById('rrA').value||1,r=+document.getElementById('rrP').value||1;const exp=w*a-(1-w);const edge=exp/(a+1);let ruin=edge<=0?100:Math.pow((1-edge)/(1+edge),50/r)*100;ruin=Math.max(0,Math.min(100,ruin));document.getElementById('rrE').textContent=(exp>=0?'+':'')+exp.toFixed(2)+'R';document.getElementById('rrE').style.color=exp>=0?'var(--green)':'var(--red)';document.getElementById('rrR').textContent=ruin<.01?'<0.01%':ruin.toFixed(1)+'%';document.getElementById('rrR').style.color=ruin<5?'var(--green)':'var(--red)'}
 
 let sm={c:[],b:0,tot:80,pos:null,pnl:0,regimes:[],userRegime:null};
@@ -3692,20 +3754,20 @@ window.addEventListener('resize',drSm);
   function injectPages(){
     const main=document.querySelector('main.mn'); if(!main||$('pg-learn10'))return;
     const html=`
-<section class="pg" id="pg-learn10"><div class="sh"><div class="st">10/10 LEARNING SYSTEM</div><div class="sd">This section upgrades SwingQuant from concept reading into evidence-gated market mechanics training. Every module has explanation, worked example, drill, trap, rubric and evidence requirement.</div></div><div id="v28LearnC"></div></section>
+<section class="pg" id="pg-learn10"><div class="sh"><div class="st">EVIDENCE-GATED LEARNING SYSTEM</div><div class="sd">This section replaces concept-reading with evidence-gated market mechanics training. Every module has explanation, worked example, drill, trap, rubric and evidence requirement.</div></div><div id="v28LearnC"></div></section>
 <section class="pg" id="pg-archetypes"><div class="sh"><div class="st">STRATEGY ARCHETYPE ACADEMY</div><div class="sd">Major strategy families explained as falsifiable research hypotheses, not chart-pattern recipes. Each archetype lists edge source, conditions, failures, data, benchmarks and rejection rules.</div></div><div id="v28ArchC"></div></section>
 <section class="pg" id="pg-robustness"><div class="sh"><div class="st">ROBUSTNESS LAB</div><div class="sd">A strategy that only works at one exact setting is probably curve-fit. This lab forces parameter stability, Monte Carlo, cost stress, slippage stress, regime decomposition and benchmark comparison.</div></div><div id="v28RobC"></div></section>
 <section class="pg" id="pg-execution28"><div class="sh"><div class="st">EXECUTION TRAINING + BEHAVIOURAL RISK ENGINE</div><div class="sd">A good strategy can be ruined by a bad operator. This page separates strategy evidence from trader execution quality and behavioural risk.</div></div><div id="v28ExecC"></div></section>
 <section class="pg" id="pg-funded"><div class="sh"><div class="st">FUNDED CHALLENGE + LIVE RISK DISCIPLINE</div><div class="sd">Challenge success can reward variance, not skill. This page forces conservative treatment of funded challenges and live accounts.</div></div><div id="v28FundC"></div></section>
 <section class="pg" id="pg-progression"><div class="sh"><div class="st">EVIDENCE-BASED PROGRESSION</div><div class="sd">No hype ranks. Progression depends on evidence, not motivation, lesson clicks or fake confidence.</div></div><div id="v28ProgC"></div></section>
-<section class="pg" id="pg-audit28"><div class="sh"><div class="st">FINAL BRUTAL AUDIT</div><div class="sd">Scores the platform capability separately from user evidence. SwingQuant can target 10/10 education and process, but no platform can honestly guarantee profitability.</div></div><div id="v28AuditC"></div></section>`;
+<section class="pg" id="pg-audit28"><div class="sh"><div class="st">PLATFORM CAPABILITY AUDIT</div><div class="sd">Scores the platform capability separately from user evidence. SwingQuant can target rigorous education and process targets, but no platform can honestly guarantee profitability.</div></div><div id="v28AuditC"></div></section>`;
     const disc=document.querySelector('.disc');
-    if(disc)disc.insertAdjacentHTML('beforebegin',html); else main.insertAdjacentHTML('beforeend',html);
+    main.insertAdjacentHTML('beforeend',html);
   }
   function enhanceDashboard(){
     if($('v28DashBand'))return;
     const hero=document.querySelector('.dash-hero'); if(!hero)return;
-    hero.insertAdjacentHTML('afterend',`<div class="v28-dash-band" id="v28DashBand"><div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap"><div><div class="v28-kicker">v28 command layer</div><h3 style="font-size:20px;color:white;margin-bottom:6px">Evidence beats motivation.</h3><p class="v28-small">Dashboard now tracks the chosen lane, bottleneck, behavioural state, validation stage and next required proof. If the user lacks evidence, the correct action is rejection, not confidence.</p></div><button class="btn btn-rd" onclick="go('audit28')">Run Brutal Audit</button></div><div class="v28-dash-grid" id="v28DashMetrics" style="margin-top:14px"></div></div>`);
+    hero.insertAdjacentHTML('afterend',`<div class="v28-dash-band" id="v28DashBand"><div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap"><div><div class="v28-kicker">v28 command layer</div><h3 style="font-size:20px;color:white;margin-bottom:6px">Evidence beats motivation.</h3><p class="v28-small">Dashboard now tracks the chosen lane, bottleneck, behavioural state, validation stage and next required proof. If the user lacks evidence, the correct action is rejection, not confidence.</p></div><button class="btn btn-rd" onclick="go('audit28')">Run Capability Audit</button></div><div class="v28-dash-grid" id="v28DashMetrics" style="margin-top:14px"></div></div>`);
   }
   function renderV28All(){renderLearn();renderArch();renderRob();renderExec();renderFund();renderProg();renderAudit();renderDashMetrics();}
   function renderDashMetrics(){const el=$('v28DashMetrics');if(!el)return;const spec=LS.g(K.spec,null);const ev=LS.g(K.evidence,{});const beh=LS.g(K.beh,[]);const lastBeh=beh[beh.length-1];const bottleneck=calcBottleneck(ev,lastBeh);el.innerHTML=`${metric('Chosen lane',spec?`${esc(spec.market)} / ${esc(spec.tf)}`:'Not locked')}${metric('Evidence level',`Level ${calcLevel(ev,lastBeh)}`)}${metric('Weakest bottleneck',bottleneck)}${metric('Behavioural state',lastBeh?lastBeh.state:'Unknown')}${metric('Validation stage',ev.walkforward?'Robustness / forward':'Pre-validation')}${metric('Next proof',nextProof(ev,lastBeh))}`}
@@ -4502,5 +4564,1160 @@ function runArchetype(){
 }
 </script>
 
+
+<script>
+
+/* ============================================================
+   v36 ENHANCEMENTS — appended after main app init
+   Items: sidebar toggle, JSON I/O, DSR calculator,
+          spaced repetition, Z-score sandbox strategy,
+          benchmark comparisons, evidence validation upgrade,
+          honest dashboard, mobile bottom nav, quiz expansion.
+   ============================================================ */
+(function v36(){
+
+// ---------- A. Sidebar toggle (desktop + mobile) ----------
+window.togSBDesk = function(){
+  if(window.innerWidth < 801){ togSB(); return; }
+  document.body.classList.toggle('sb-collapsed');
+  try{ localStorage.setItem('squ_sbCollapsed', document.body.classList.contains('sb-collapsed') ? '1' : '0'); }catch(e){}
+};
+// restore preference
+try{ if(localStorage.getItem('squ_sbCollapsed')==='1') document.body.classList.add('sb-collapsed'); }catch(e){}
+// keyboard shortcut
+document.addEventListener('keydown', function(e){
+  if((e.ctrlKey||e.metaKey) && e.key==='b'){ e.preventDefault(); togSBDesk(); }
+});
+
+// ---------- B. Mobile bottom nav ----------
+function buildMobileBottomNav(){
+  if(document.querySelector('.mob-bottom')) return;
+  const nav = document.createElement('div');
+  nav.className = 'mob-bottom';
+  nav.innerHTML = `<div class="mob-bottom-inner">
+    <button onclick="go('dash')"><span class="mb-i">◈</span><span>Home</span></button>
+    <button onclick="go('lesson')"><span class="mb-i">▣</span><span>Learn</span></button>
+    <button onclick="go('quiz')"><span class="mb-i">◉</span><span>Quiz</span></button>
+    <button onclick="go('backtest')"><span class="mb-i">▦</span><span>Sandbox</span></button>
+    <button onclick="togSB()"><span class="mb-i">☰</span><span>More</span></button>
+  </div>`;
+  document.body.appendChild(nav);
+}
+buildMobileBottomNav();
+
+// ---------- C. Quiz expansion ----------
+try{
+if(Q[1]){
+Q[1].push(['Lit market depth refers to:',['Visible quotes and sizes at each price level on a public order book','Only the broker spread','Hidden iceberg orders only','The daily candle range'],0,'Lit depth is the publicly observable order book; it does not include hidden or off-exchange flow.']);
+Q[1].push(['A market maker quotes both bid and offer because:',['They earn the spread by providing liquidity but bear inventory risk','They guarantee no price moves','They are charity providers','They want to lose money'],0,'Market makers post two-sided quotes to capture the spread, accepting adverse selection and inventory risk.']);
+Q[1].push(['Order book imbalance describes:',['Asymmetry between bid-side and offer-side quoted size, often a short-horizon signal','Account leverage','Broker commission','RSI divergence'],0,'Imbalance can correlate with short-term price pressure but is heavily exploited by HFT and decays fast.']);
+Q[1].push(['Information asymmetry in markets means:',['Some participants have better data, models or speed and others pay for it through worse fills','Everyone has identical information','Spreads are always zero','News always moves price up'],0,'Retail participants typically sit at the slow end of the information food chain and absorb the cost of that asymmetry.']);
+Q[1].push(['Why is the term "fair value" misleading for short-term traders?',['Fair value is a model output dependent on assumptions; the market price is what is tradable','Fair value never changes','Markets always print fair value','It is a regulated number'],0,'Fair value is conditional on a model. The realised price is the only number you can transact at.']);
+Q[1].push(['A "thin" market is characterised by:',['Limited resting liquidity, wider spreads, and faster price moves on small flow','Very tight spreads','Infinite depth','Zero volatility'],0,'Thin liquidity amplifies the price impact of small orders and increases slippage.']);
+}
+if(Q[2]){
+Q[2].push(['Price-time priority means:',['Better-priced orders fill first; among equal prices, earlier orders fill first','The newest order always fills first','Larger orders always fill first','Random order'],0,'Most lit venues use price-then-time priority for queue position.']);
+Q[2].push(['Pro-rata matching is used when:',['Some venues allocate fills proportionally to size at the same price','Only retail orders trade','The market is closed','There are no market makers'],0,'Pro-rata changes incentives — quoting larger size becomes more valuable than queue position alone.']);
+Q[2].push(['An iceberg order:',['Displays only a portion of total size, refilling visible quantity as it fills','Shows full size always','Cancels itself randomly','Trades only at midnight'],0,'Icebergs hide true intent. Displayed depth understates real interest.']);
+Q[2].push(['Queue position matters because:',['Earlier queue position fills first when liquidity arrives, capturing more spread and reducing adverse selection','Position is meaningless','Only retail accounts have queue positions','It changes the bid-ask formula'],0,'Queue position is a real source of edge for passive market making strategies.']);
+Q[2].push(['Self-trade prevention rules exist to:',['Stop the same firm from trading against itself, distorting price and volume signals','Encourage wash trading','Increase commissions','Hide losses'],0,'Most regulated venues enforce self-trade prevention to protect signal integrity.']);
+}
+if(Q[3]){
+Q[3].push(['A retail aggregator routes flow to:',['Wholesalers or dark pools that internalise the order, often capturing the spread','Only public exchanges','Only the federal reserve','Random destinations'],0,'Payment for order flow channels retail orders to wholesalers; this affects price improvement and adverse selection economics.']);
+Q[3].push(['Best execution requires brokers to:',['Take reasonable steps to obtain the most favourable terms for the client','Always route to the cheapest commission venue','Only route to one specific exchange','Ignore client interests'],0,'Best execution is a regulatory standard considering price, speed, likelihood of execution, and other factors.']);
+Q[3].push(['Latency advantages compound because:',['Faster participants pick off slower quotes before they can adjust to new information','Speed never matters','Slower means cheaper','All participants trade at the same speed'],0,'Latency arbitrage is a real cost paid by slower participants in the form of worse fills.']);
+Q[3].push(['Dark pools are venues where:',['Orders are matched without pre-trade transparency, often at the lit-market midpoint','Only criminals trade','Spreads are always zero','Trades are illegal'],0,'Dark pools reduce information leakage for large orders but introduce different adverse-selection dynamics.']);
+Q[3].push(['Why does a retail trader rarely beat institutional execution?',['Retail lacks co-location, smart order routing, exchange rebates, and tier-one data feeds','Retail is not allowed to trade','Institutions are slower','Institutions only buy at high prices'],0,'Execution infrastructure is expensive and outside retail reach; this is a structural cost, not a skill gap.']);
+}
+if(Q[4]){
+Q[4].push(['Value area in market profile is:',['The price range containing approximately 70% of traded volume in a session','The daily high and low','The opening price only','The futures contract roll'],0,'The value area marks where the market accepted price as fair based on volume distribution.']);
+Q[4].push(['A b-shaped profile typically suggests:',['Late-session liquidation or one-time framing trade','Equilibrium acceptance','Pure mean reversion','Zero volatility'],0,'B-shapes can indicate aggressive directional flow rather than balanced price discovery.']);
+Q[4].push(['Initiative buying versus responsive buying:',['Initiative occurs above prior value; responsive occurs at or below','They are identical','Only one ever happens','Initiative means random'],0,'Auction theory frames participants as either accepting the existing distribution or trying to extend it.']);
+Q[4].push(['Price discovery slows when:',['Volume thins and spreads widen, reducing the speed of new information being priced in','New information always speeds it up','Volume increases','Markets close'],0,'Slow price discovery often coincides with low-conviction periods and wider transaction costs.']);
+}
+if(Q[5]){
+Q[5].push(['VWAP is calculated as:',['Sum of (price × volume) divided by total volume over the period','The simple average of high and low','Closing price only','Opening price only'],0,'VWAP weights price by traded volume — institutional execution benchmarks reference it.']);
+Q[5].push(['A high-volume node (HVN) typically acts as:',['A magnet or support/resistance area where prior trading concentrated','A guaranteed reversal point','An automatic profit zone','A randomly placed level'],0,'HVNs reflect price levels with high participation; they often produce mean-reverting behaviour but are not deterministic.']);
+Q[5].push(['A low-volume node (LVN) typically:',['Allows fast directional moves through the level due to thin participation','Always rejects price','Has the highest volume','Marks the daily close'],0,'LVNs are zones price moves through quickly because few participants traded there before.']);
+Q[5].push(['Anchored VWAP is useful because:',['It references VWAP from a structurally meaningful event rather than a fixed period','It removes all volatility','It guarantees direction','It works only on Mondays'],0,'Anchoring to events like earnings, ranges, or breakouts gives volume-weighted reference levels with economic meaning.']);
+Q[5].push(['VWAP deviation should be normalised by volatility because:',['A 1% deviation in calm markets is not the same statistical event as 1% in volatile markets','Volatility is irrelevant','VWAP has no relation to vol','Normalisation only applies to RSI'],0,'Distance from VWAP is more interpretable when expressed in standard deviations or volatility units.']);
+}
+if(Q[6]){
+Q[6].push(['Negative skew in returns means:',['Larger downside outliers than upside; left tail is heavier','Larger upside outliers','Symmetric returns','No volatility'],0,'Negative skew is common in equity-like assets — slow grinds up, sharp drops down.']);
+Q[6].push(['Excess kurtosis above zero indicates:',['Fatter tails than the normal distribution; extreme events are more frequent than Gaussian models predict','Thinner tails','No tails','Perfectly normal distribution'],0,'Excess kurtosis above 0 (vs Gaussian baseline of 3) signals fat tails and underestimated VaR.']);
+Q[6].push(['Volatility clustering means:',['Periods of high volatility are followed by more high volatility, and similarly for calm','Volatility is constant','Random with no autocorrelation','Volatility decreases monotonically'],0,'Volatility shows positive autocorrelation — a key feature GARCH models attempt to capture.']);
+Q[6].push(['Why is the normal distribution dangerous for financial risk?',['It systematically underestimates the probability of extreme losses in fat-tailed return data','It overestimates losses','It is illegal','It works perfectly'],0,'Real returns have heavier tails than Gaussian, so VaR built on normality understates true tail risk.']);
+Q[6].push(['Higher moments matter because:',['Mean and variance alone do not capture skew, kurtosis, or asymmetry of risk','They never matter','Variance includes everything','Only mean matters'],0,'A strategy with low variance but extreme negative skew can still cause catastrophic losses.']);
+}
+if(Q[7]){
+Q[7].push(['A Z-score of -2.5 indicates:',['The observation is 2.5 standard deviations below the rolling mean','Price has gone up 2.5%','25% drawdown','Random number'],0,'Z-scores measure standardised distance from mean — useful for cross-asset comparison.']);
+Q[7].push(['Why use a rolling z-score rather than a static one?',['Markets are non-stationary; the relevant mean and standard deviation change over time','Static z-scores work everywhere','Rolling is illegal','Computers cannot calculate static'],0,'A rolling window adapts to regime changes that fixed-period statistics ignore.']);
+Q[7].push(['A common z-score lookback for short-term mean reversion is:',['20–60 bars depending on timeframe and instrument','Always 5','Always 1000','Random'],0,'20-60 bars balances responsiveness with statistical reliability — but optimal lookback varies by instrument.']);
+Q[7].push(['Volatility normalisation lets you:',['Compare moves across different instruments and regimes on a common scale','Eliminate all risk','Always predict direction','Replace position sizing'],0,'Comparing raw point moves across instruments is meaningless without volatility normalisation.']);
+}
+if(Q[8]){
+Q[8].push(['Parametric 95% VaR with 1.6449 z assumes:',['Returns are normally distributed — an assumption frequently violated','Returns are uniform','No distribution assumption','Returns are constant'],0,'The 1.6449 z-score is the one-tail 95% Gaussian quantile. Real returns rarely fit this assumption.']);
+Q[8].push(['Maximum drawdown differs from VaR because:',['Drawdown is path-dependent and measures peak-to-trough loss; VaR is a distributional cutoff','They are identical','VaR is always larger','Drawdown only applies to options'],0,'Drawdown captures the realised loss path; VaR is a probabilistic measure of single-period loss.']);
+Q[8].push(['Historical simulation VaR uses:',['Empirical past return distribution rather than a parametric model','Always Gaussian','Always uniform','Made-up numbers'],0,'Historical simulation avoids distributional assumptions but is limited by the available sample.']);
+Q[8].push(['CVaR is preferred over VaR because:',['It captures the average loss in the tail beyond VaR, not just the threshold','It is always smaller','It ignores tails','It is faster to compute'],0,'CVaR (Expected Shortfall) describes how bad the tail actually is — VaR only describes where it starts.']);
+Q[8].push(['Volatility scaling reduces:',['Realised drawdown by sizing exposure inversely to recent volatility','All risk','Spreads','Hit rates'],0,'Vol-targeting stabilises portfolio risk across regimes but introduces procyclical deleveraging.']);
+}
+if(Q[9]){
+Q[9].push(['Pearson correlation only captures:',['Linear dependence; it misses non-linear and tail-dependent relationships','All dependencies','Causation','Volatility'],0,'Two assets can be uncorrelated by Pearson and still co-crash via tail dependence.']);
+Q[9].push(['Correlation typically does what during crisis?',['Rises across most risky assets as forced selling dominates idiosyncratic flows','Falls to zero','Becomes perfectly negative','Stays constant'],0,'Crisis correlation convergence destroys the diversification visible in calm regimes.']);
+Q[9].push(['Beta of 1.4 to the S&P 500 means:',['On average, a 1% S&P move is associated with a 1.4% move in the asset','The asset always returns 1.4%','It is uncorrelated','It is risk-free'],0,'Beta is a regression slope — it describes average sensitivity, not certainty.']);
+Q[9].push(['Risk parity allocates weights:',['Inversely proportional to each asset\'s volatility so each contributes equal risk','By market cap','By price','Randomly'],0,'Risk parity targets equal risk contribution — its leverage profile depends on the chosen risk measure.']);
+Q[9].push(['Why is "diversification" by asset count misleading?',['Holding 50 correlated assets is one factor bet, not 50 independent bets','Count is everything','More is always safer','It is mathematically perfect'],0,'Real diversification depends on independent risk drivers, not the number of tickers in a portfolio.']);
+}
+if(Q[10]){
+Q[10].push(['The simplified continuous Kelly fraction is:',['f* = mu / sigma^2 where mu is excess return and sigma^2 is variance','f* = win rate','f* = leverage','f* = price'],0,'Kelly maximises long-run geometric growth subject to estimated edge and variance.']);
+Q[10].push(['Half-Kelly trades off:',['Slightly slower growth in exchange for materially lower drawdown and estimation-error robustness','Higher returns always','Zero risk','Doubled volatility'],0,'Fractional Kelly is preferred in practice because real-world edge estimates are noisy.']);
+Q[10].push(['Overbetting beyond full Kelly causes:',['Negative compounded growth despite positive expected value','Higher growth always','No effect','Zero variance'],0,'Past full Kelly the growth rate decreases and eventually becomes negative — the "overbetting collapse".']);
+Q[10].push(['Kelly assumes:',['Stationary edge, accurate probability estimates, and no estimation error — all unrealistic','Random outcomes','Zero variance','Negative edge'],0,'Kelly is a theoretical optimum under strong assumptions; real implementations require shrinkage.']);
+Q[10].push(['Why is Kelly often misapplied in trading?',['Traders overestimate edge, ignore correlation across positions, and under-model regime change','Kelly is illegal','It only works in poker','It requires a CFA'],0,'In real trading, edge estimates are biased upward and ignore portfolio-level correlation, making Kelly fragile.']);
+}
+if(Q[11]){
+Q[11].push(['Effective spread is:',['Twice the difference between trade price and the prevailing mid at execution','The bid-ask gap','Always zero','Commission'],0,'Effective spread captures realised execution cost relative to mid — closer to true cost than quoted spread.']);
+Q[11].push(['Market impact scales approximately with:',['Order size relative to participation rate, often via square-root or Almgren-Chriss models','Random luck','Linear with commission','Inversely with volatility'],0,'Larger orders move the market more; impact is a key cost for size-constrained strategies.']);
+Q[11].push(['Implementation shortfall measures:',['The difference between the decision-time hypothetical fill and realised execution after costs','Win rate','Position size','Daily volume'],0,'IS captures every form of slippage: spread, market impact, opportunity cost, and timing risk.']);
+Q[11].push(['Why does turnover matter for net returns?',['High turnover multiplies per-trade costs into a meaningful drag on annual returns','It never matters','Higher turnover always wins','Costs only apply once a year'],0,'A strategy with positive gross edge can have negative net returns if turnover is high enough.']);
+}
+if(Q[12]){
+Q[12].push(['Information Ratio is:',['Active return divided by tracking error against the benchmark','Sharpe ratio multiplied by 2','Win rate','Account leverage'],0,'IR measures excess return per unit of active risk — common institutional benchmark.']);
+Q[12].push(['Fama-French three-factor model adds:',['Size (SMB) and value (HML) to market factor','Only momentum','Only volatility','Only commodities'],0,'FF3 is foundational; FF5 and other extensions add profitability, investment, and momentum factors.']);
+Q[12].push(['Momentum factor (UMD) captures:',['The tendency of past winners to continue outperforming past losers over 3-12 month horizons','Mean reversion','Random walks','Fixed income only'],0,'Momentum is one of the most persistent anomalies, though it suffers severe crashes.']);
+Q[12].push(['A strategy with high alpha but high tracking error:',['May be rejected from a portfolio if the mandate cannot tolerate active risk','Always wins','Has no benchmark','Is risk-free'],0,'Mandate constraints can force rejection of high-alpha strategies if they violate risk limits.']);
+}
+if(Q[13]){
+Q[13].push(['A t-statistic of 2.5 with 100 trades is:',['Above the common 2.0 hurdle but should be tested for serial correlation and multiple-testing penalties','Always significant','Always insignificant','A guaranteed edge'],0,'Raw t-stats need adjustment for autocorrelation, multiple testing, and economic plausibility.']);
+Q[13].push(['The null hypothesis in strategy testing is typically:',['That the strategy has zero excess return after costs','That it definitely makes money','That returns are random','That commissions are zero'],0,'Failing to reject the null means insufficient evidence of edge — not proof of zero edge.']);
+Q[13].push(['p-hacking refers to:',['Running many tests and reporting only the few that show significance','Hacking computer systems','Using high p-values','Eliminating all losses'],0,'p-hacking inflates false discovery rates — a major issue in retail strategy "research".']);
+Q[13].push(['The Bonferroni correction:',['Adjusts the significance threshold for the number of tests run, typically alpha/k','Has no effect','Always rejects everything','Removes commissions'],0,'Bonferroni is one of the simplest multiple-testing corrections; FDR methods are more powerful for many tests.']);
+}
+if(Q[14]){
+Q[14].push(['ADF test null hypothesis:',['The series has a unit root (non-stationary)','The series is stationary','Mean is zero','Variance is one'],0,'A small p-value rejects the unit root and supports stationarity.']);
+Q[14].push(['Heteroscedasticity means:',['Variance changes over time','Variance is constant','Mean is zero','No autocorrelation'],0,'Financial returns are heteroscedastic — volatility clusters across time.']);
+Q[14].push(['GARCH(1,1) volatility forecast depends on:',['Long-run variance, last shock squared, and previous conditional variance','Only the closing price','Random numbers','Future returns'],0,'GARCH(1,1) is sigma_t^2 = omega + alpha*epsilon_{t-1}^2 + beta*sigma_{t-1}^2.']);
+Q[14].push(['Why log returns rather than price levels?',['Log returns are additive over time and closer to stationarity than raw prices','Logs are more colourful','Prices are forbidden','Log returns are always positive'],0,'Log returns enable additive aggregation and are typically the building block for time-series models.']);
+}
+if(Q[15]){
+Q[15].push(['Cointegration means:',['Two non-stationary series have a stationary linear combination','They always rise together','They are uncorrelated','They have zero volatility'],0,'Cointegration is the basis for many statistical arbitrage spread models.']);
+Q[15].push(['Pairs trading depends on:',['A persistent economic relationship producing a mean-reverting spread','Random charts','Constant correlation','Identical companies'],0,'Without an economic mechanism, observed cointegration is often spurious.']);
+Q[15].push(['The Engle-Granger test checks:',['Whether the residual from a regression of one series on another is stationary','Whether returns are normal','Whether spreads are zero','Whether commissions exist'],0,'Engle-Granger is a two-step test for cointegration in pairs.']);
+Q[15].push(['Why do most pairs trades break?',['Cointegration relationships decay as fundamentals or market structure shift','They never break','They only break randomly','Backtests are perfect'],0,'Pair relationships are not laws of physics; they reflect transient economic states that can change.']);
+}
+if(Q[16]){
+Q[16].push(['The most insidious form of leakage is:',['Using information that would not have been available at the decision time, often through subtle feature engineering','Forgetting to commit code','Wrong colour scheme','Using too many indicators'],0,'Subtle leakage (revised data, future-aligned features, peeking normalisation) can manufacture impressive backtests.']);
+Q[16].push(['TimeSeriesSplit in scikit-learn:',['Generates training sets that always precede their test sets in time order','Randomly splits data','Uses leave-one-out','Never works'],0,'TimeSeriesSplit preserves temporal order but does not handle overlapping label horizons.']);
+Q[16].push(['Embargoing in walk-forward analysis:',['Removes observations near the train/test boundary to reduce information leakage','Adds extra training data','Eliminates costs','Doubles the test set'],0,'Embargo periods help when label horizons or feature lags can leak across the train/test boundary.']);
+Q[16].push(['Combinatorial purged CV is preferred when:',['Labels overlap and observations are not independent, especially in event-driven sampling','Always, in all cases','Data is fully iid','Sample size is tiny'],0,'CPCV addresses both label overlap and the multiple-paths problem standard walk-forward ignores.']);
+}
+if(Q[21]){
+Q[21].push(['Point-in-time data:',['Reflects what was actually known at each historical timestamp, not later revisions','The current snapshot only','Future predictions','Random data'],0,'PIT data is essential for fundamental and macro features that get revised after publication.']);
+Q[21].push(['Survivorship bias inflates returns by:',['Excluding companies or strategies that failed and were removed from databases','Including too many losers','Adding random noise','Slowing computation'],0,'Failed entities disappearing from the dataset systematically bias historical performance upward.']);
+Q[21].push(['A reproducible research pipeline requires:',['Versioned data, code, and parameters with deterministic outputs','Magic','Verbal instructions only','Lots of meetings'],0,'Reproducibility is the foundation of trustworthy research, separate from whether results are correct.']);
+Q[21].push(['Look-ahead bias in fundamental data often comes from:',['Using as-reported values without accounting for the lag between fiscal period end and publication','Using too many decimals','Using free data','Using too much data'],0,'Companies report quarterly results weeks after period end; using period-end values introduces leakage.']);
+}
+if(Q[22]){
+Q[22].push(['Vega measures option sensitivity to:',['Implied volatility changes','Underlying price changes','Time decay','Interest rates'],0,'Vega is the first-order sensitivity of option price to implied volatility.']);
+Q[22].push(['When dealers are net long gamma:',['Hedging requires selling rallies and buying dips, dampening realised volatility','Always amplifies moves','Has no effect','Increases spreads'],0,'Long gamma hedging can suppress realised vol; short gamma hedging amplifies it.']);
+Q[22].push(['The volatility skew typically shows:',['Higher implied volatility for out-of-the-money puts than equivalent calls in equity indices','Equal IV across strikes','Higher IV for calls','No structure'],0,'Equity index skew reflects persistent demand for downside protection.']);
+Q[22].push(['Risk reversal price reflects:',['The relative cost of out-of-money calls vs puts, indicating directional skew','The mid-price','Commission','Random'],0,'FX risk reversals are commonly used to gauge market positioning and skew.']);
+}
+if(Q[23]){
+Q[23].push(['HRP (Hierarchical Risk Parity) avoids:',['Inverting noisy covariance matrices that destabilise mean-variance optimisation','All math','Asset clustering','Risk parity entirely'],0,'HRP uses hierarchical clustering and recursive bisection to allocate without matrix inversion.']);
+Q[23].push(['Black-Litterman starting point is:',['Market-implied equilibrium returns derived from market cap weights','Random returns','Equal weights','User intuition'],0,'BL anchors expected returns to market equilibrium and shrinks views toward this prior.']);
+Q[23].push(['Why does mean-variance optimisation produce extreme weights?',['Small estimation errors in expected returns get amplified into large allocation tilts','It is correctly calibrated','By design','Random'],0,'The Markowitz optimiser is highly sensitive to noisy inputs — known as "error maximisation".']);
+Q[23].push(['Robust portfolio construction prefers:',['Resampling, shrinkage, or constraint-based methods over naive optimisation','Maximum leverage','Single-asset bets','Pure intuition'],0,'Modern allocation typically combines simple baselines with shrinkage to reduce estimation error.']);
+}
+if(Q[24]){
+Q[24].push(['Alt-data alpha decay is faster when:',['The dataset is widely sold and easily processable','It is hard to access','It is proprietary','Nobody knows about it'],0,'Once a dataset is broadly available, the alpha tends to be arbitraged away quickly.']);
+Q[24].push(['Sentiment from news headlines:',['Requires careful timestamp alignment and language model calibration to avoid leakage','Always works','Is random','Predicts perfectly'],0,'NLP signals are sensitive to publication time, language drift, and source bias.']);
+Q[24].push(['Satellite imagery for retail traffic:',['Provides a noisy proxy for foot traffic but requires economic interpretation','Always predicts earnings','Is illegal','Has no value'],0,'Alt-data needs hypothesis-driven validation, not just correlation hunting.']);
+Q[24].push(['Alpha factor crowding shows up as:',['Reduced returns and higher correlation among similar strategies','Increased returns','No effect','Lower volatility'],0,'When many funds chase the same factor, returns compress and tail risk increases.']);
+}
+}catch(e){console.warn('Quiz expansion error', e)}
+
+// ---------- D. JSON Evidence Export / Import ----------
+window.sqExportEvidence = function(){
+  try{
+    const data = {};
+    for(let i=0; i<localStorage.length; i++){
+      const k = localStorage.key(i);
+      if(k && k.startsWith('squ_')){
+        try{ data[k.slice(4)] = JSON.parse(localStorage.getItem(k)); }
+        catch{ data[k.slice(4)] = localStorage.getItem(k); }
+      }
+    }
+    const payload = { version:1, exportedAt:new Date().toISOString(), app:'SwingQuant', data };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type:'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'swingquant_evidence_' + new Date().toISOString().slice(0,10) + '.json';
+    a.click();
+    setTimeout(()=>URL.revokeObjectURL(url), 1000);
+  }catch(e){ alert('Export failed: '+e.message); }
+};
+
+window.sqImportEvidence = function(){
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'application/json,.json';
+  input.onchange = function(ev){
+    const f = ev.target.files && ev.target.files[0];
+    if(!f) return;
+    const reader = new FileReader();
+    reader.onload = function(e){
+      try{
+        const payload = JSON.parse(e.target.result);
+        if(!payload || payload.version !== 1 || !payload.data){
+          alert('Not a valid SwingQuant export.'); return;
+        }
+        const keys = Object.keys(payload.data);
+        const ok = confirm(`This will overwrite your current evidence with ${keys.length} items from a backup dated ${payload.exportedAt.slice(0,10)}. Continue?`);
+        if(!ok) return;
+        // Wipe existing squ_ keys, then restore
+        const toDel = [];
+        for(let i=0; i<localStorage.length; i++){
+          const k = localStorage.key(i);
+          if(k && k.startsWith('squ_')) toDel.push(k);
+        }
+        toDel.forEach(k=>localStorage.removeItem(k));
+        keys.forEach(k=>{
+          const v = payload.data[k];
+          localStorage.setItem('squ_'+k, typeof v === 'string' ? v : JSON.stringify(v));
+        });
+        alert('Import complete. Reloading...');
+        location.reload();
+      }catch(e){ alert('Import failed: '+e.message); }
+    };
+    reader.readAsText(f);
+  };
+  input.click();
+};
+
+window.sqExportTextSummary = function(){
+  try{
+    const snap = (typeof evidenceSnapshot==='function') ? evidenceSnapshot() : null;
+    const lines = ['SwingQuant Evidence Summary', '='.repeat(40), 'Generated: '+new Date().toISOString(), ''];
+    if(snap){
+      lines.push(`Evidence Level: ${snap.level} — ${snap.label||''}`);
+      lines.push(`Total items: ${snap.total}`);
+      lines.push('');
+      lines.push('Categories:');
+      (snap.cats||[]).forEach(c=>lines.push(`  ${c.k}: ${c.v}/${c.t} — ${c.desc}`));
+    }
+    const trades = JSON.parse(localStorage.getItem('squ_bt')||'[]');
+    const csv = JSON.parse(localStorage.getItem('squ_csvTests')||'[]');
+    const journal = JSON.parse(localStorage.getItem('squ_journal')||'[]');
+    lines.push('');
+    lines.push(`Trades logged: ${trades.length}`);
+    lines.push(`CSV tests: ${csv.length}`);
+    lines.push(`Journal entries: ${journal.length}`);
+    lines.push('');
+    lines.push('This summary is descriptive only. It is not a measure of trading skill.');
+    const blob = new Blob([lines.join('\n')], { type:'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'swingquant_summary_'+new Date().toISOString().slice(0,10)+'.txt';
+    a.click();
+    setTimeout(()=>URL.revokeObjectURL(url), 1000);
+  }catch(e){ alert('Summary failed: '+e.message); }
+};
+
+// ---------- E. Inject Backup panel into Dashboard ----------
+function injectBackupPanel(){
+  const dashTruth = document.getElementById('dashTruth');
+  if(!dashTruth || document.getElementById('backupPanel')) return;
+  const panel = document.createElement('div');
+  panel.id = 'backupPanel';
+  panel.className = 'backup-panel';
+  panel.innerHTML = `<h3>📦 Backup & restore your evidence</h3>
+    <p style="font-size:12.5px;color:var(--muted)">Your progress lives in your browser only. Clearing your cache deletes it. Export regularly if you care about retention.</p>
+    <div class="backup-actions">
+      <button class="btn btn-g" onclick="sqExportEvidence()">Export evidence (JSON)</button>
+      <button class="btn btn-s" onclick="sqImportEvidence()">Import evidence (JSON)</button>
+      <button class="btn btn-s" onclick="sqExportTextSummary()">Export text summary</button>
+    </div>`;
+  dashTruth.parentNode.insertBefore(panel, dashTruth.nextSibling);
+}
+// Run after dashboard renders
+setTimeout(injectBackupPanel, 800);
+const origRDash = window.rDash;
+if(typeof origRDash === 'function'){
+  window.rDash = function(){
+    try{ origRDash.apply(this, arguments); }
+    catch(e){ console.warn('rDash error', e); }
+    setTimeout(injectBackupPanel, 100);
+    setTimeout(updateDueBadge, 100);
+  };
+}
+
+// ---------- F. Spaced Repetition (SM-2) ----------
+const SR_KEY = 'squ_qzFailedSR';
+const SR_MIGRATED = 'squ_qzFailedMigrated_v1';
+
+function srMigrate(){
+  try{
+    if(localStorage.getItem(SR_MIGRATED)==='1') return;
+    const old = JSON.parse(localStorage.getItem('squ_qzFailed')||'{}');
+    const sr = JSON.parse(localStorage.getItem(SR_KEY)||'[]');
+    const now = Date.now();
+    Object.entries(old).forEach(([phase, items])=>{
+      (items||[]).forEach(it=>{
+        if(!sr.find(x=>x.prompt===it.prompt)){
+          sr.push({
+            phase: parseInt(phase),
+            prompt: it.prompt,
+            tag: it.tag||'',
+            options: it.options||[],
+            answer: it.answer,
+            explanation: it.explanation||'',
+            interval: 1,
+            easeFactor: 2.5,
+            repetitions: 0,
+            dueAt: now
+          });
+        }
+      });
+    });
+    localStorage.setItem(SR_KEY, JSON.stringify(sr));
+    localStorage.setItem(SR_MIGRATED, '1');
+  }catch(e){console.warn('SR migrate', e)}
+}
+srMigrate();
+
+// Periodic sync: bring any newly-failed questions into the SR queue
+function srSyncFromFailed(){
+  try{
+    const old = JSON.parse(localStorage.getItem('squ_qzFailed')||'{}');
+    const sr = JSON.parse(localStorage.getItem(SR_KEY)||'[]');
+    const seen = new Set(sr.map(x=>x.prompt));
+    let added = 0;
+    Object.entries(old).forEach(([phase, items])=>{
+      (items||[]).forEach(it=>{
+        if(!seen.has(it.prompt)){
+          sr.push({
+            phase: parseInt(phase),
+            prompt: it.prompt,
+            tag: it.tag||'',
+            options: it.options||[],
+            answer: it.answer,
+            explanation: it.explanation||'',
+            interval: 1, easeFactor: 2.5, repetitions: 0, dueAt: Date.now()
+          });
+          added++;
+        }
+      });
+    });
+    if(added){
+      localStorage.setItem(SR_KEY, JSON.stringify(sr));
+      updateDueBadge();
+    }
+  }catch(e){}
+}
+setInterval(srSyncFromFailed, 15000);
+srSyncFromFailed();
+
+window.sqSRDueCount = function(){
+  try{
+    const sr = JSON.parse(localStorage.getItem(SR_KEY)||'[]');
+    const now = Date.now();
+    return sr.filter(x=>x.dueAt<=now).length;
+  }catch{return 0}
+};
+
+window.sqSRGrade = function(idx, grade){
+  try{
+    const sr = JSON.parse(localStorage.getItem(SR_KEY)||'[]');
+    const item = sr[idx];
+    if(!item) return;
+    if(grade >= 3){
+      if(item.repetitions === 0) item.interval = 1;
+      else if(item.repetitions === 1) item.interval = 6;
+      else item.interval = Math.round(item.interval * item.easeFactor);
+      item.repetitions++;
+      const ef = item.easeFactor + (0.1 - (5-grade)*(0.08 + (5-grade)*0.02));
+      item.easeFactor = Math.max(1.3, ef);
+    } else {
+      item.repetitions = 0;
+      item.interval = 1;
+    }
+    item.dueAt = Date.now() + item.interval * 86400000;
+    localStorage.setItem(SR_KEY, JSON.stringify(sr));
+    updateDueBadge();
+    if(typeof rQzReview === 'function') rQzReview();
+  }catch(e){console.warn('SR grade', e)}
+};
+
+// Override the review queue render to use SR scheduling
+window.rQzReviewSR = function(){
+  const c = document.getElementById('qzRevC');
+  if(!c) return;
+  try{
+    const sr = JSON.parse(localStorage.getItem(SR_KEY)||'[]');
+    const now = Date.now();
+    const due = sr.map((x,i)=>({...x,_idx:i})).filter(x=>x.dueAt<=now);
+    const scheduled = sr.length - due.length;
+    if(!sr.length){
+      c.innerHTML = '<div class="cd"><p>No questions in your spaced-repetition queue. Failed questions will appear here.</p></div>';
+      return;
+    }
+    let html = `<div class="cd" style="margin-bottom:12px"><strong>${due.length} due now · ${scheduled} scheduled for later.</strong> Spaced repetition uses an SM-2 schedule. Grade your answer honestly — over-rating yourself defeats the system.</div>`;
+    if(!due.length){
+      const next = Math.min(...sr.map(x=>x.dueAt));
+      const days = Math.ceil((next-now)/86400000);
+      html += `<div class="cd"><p>Nothing due. Next review in ~${days} day(s).</p></div>`;
+    } else {
+      due.slice(0, 5).forEach(it=>{
+        const opts = (it.options||[]).map((o,j)=>`<button class="qo" onclick="sqSRReveal(${it._idx},${j})" id="srOpt_${it._idx}_${j}">${String.fromCharCode(65+j)}. ${o}</button>`).join('');
+        html += `<div class="cd" style="margin-bottom:14px"><div style="font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">Phase ${it.phase} · ${it.tag||'Review'} · interval ${it.interval}d · reps ${it.repetitions}</div><div style="font-weight:700;margin-bottom:10px">${it.prompt}</div>${opts}<div id="srExp_${it._idx}" style="margin-top:10px;display:none"></div></div>`;
+      });
+      if(due.length > 5) html += `<div class="cd"><p>+${due.length-5} more due. Complete these first.</p></div>`;
+    }
+    c.innerHTML = html;
+  }catch(e){console.warn('rQzReviewSR', e); c.innerHTML='<div class="cd"><p>Review queue error.</p></div>';}
+};
+
+window.sqSRReveal = function(idx, choice){
+  try{
+    const sr = JSON.parse(localStorage.getItem(SR_KEY)||'[]');
+    const it = sr[idx];
+    if(!it) return;
+    const correct = (choice === it.answer);
+    document.querySelectorAll('[id^="srOpt_'+idx+'_"]').forEach((el,j)=>{
+      if(j === it.answer) el.classList.add('ok');
+      if(j === choice && j !== it.answer) el.classList.add('no');
+      el.disabled = true;
+    });
+    const exp = document.getElementById('srExp_'+idx);
+    if(exp){
+      exp.style.display = 'block';
+      exp.innerHTML = `<p style="font-size:12.5px;color:var(--muted);margin-bottom:10px">${it.explanation||''}</p>
+        <p style="font-size:12px;color:var(--dim);margin-bottom:8px">${correct?'Correct':'Wrong'} — grade your recall:</p>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          ${[0,1,2,3,4,5].map(g=>`<button class="btn btn-s btn-sm" onclick="sqSRGrade(${idx},${g})">${g} ${['Total blank','Wrong, recognised','Wrong, close','Right, hard','Right, hesitant','Right, instant'][g]}</button>`).join('')}
+        </div>`;
+    }
+  }catch(e){console.warn('SR reveal', e)}
+};
+
+// Wire SR review into the existing tab system
+const origRQzReview = window.rQzReview;
+window.rQzReview = function(){
+  if(window.rQzReviewSR) return window.rQzReviewSR();
+  if(typeof origRQzReview === 'function') return origRQzReview();
+};
+
+function updateDueBadge(){
+  const due = sqSRDueCount();
+  const badge = document.getElementById('dueBadge');
+  const count = document.getElementById('dueCount');
+  if(badge && count){
+    if(due > 0){
+      badge.style.display = '';
+      count.textContent = due;
+    } else {
+      badge.style.display = 'none';
+    }
+  }
+}
+setInterval(updateDueBadge, 30000);
+updateDueBadge();
+
+// ---------- G. Deflated Sharpe Ratio Calculator ----------
+function injectDSRTab(){
+  const tabsEl = document.getElementById('rkTB');
+  if(!tabsEl || document.getElementById('rk-rkD')) return;
+  // add tab button
+  const btn = document.createElement('button');
+  btn.className = 'tab';
+  btn.textContent = 'Deflated Sharpe';
+  btn.onclick = function(){ sTab('rk','rkD',this); };
+  tabsEl.appendChild(btn);
+  // add tab content
+  const main = tabsEl.parentNode;
+  const tc = document.createElement('div');
+  tc.className = 'tc';
+  tc.id = 'rk-rkD';
+  tc.innerHTML = `<div class="cd"><h3 style="color:var(--gold);margin-bottom:12px">Deflated Sharpe Ratio (DSR)</h3>
+  <p style="font-size:12.5px;color:var(--muted);margin-bottom:14px">Adjusts an observed Sharpe ratio for multiple-testing inflation, sample size, and non-normality. After Bailey & López de Prado.</p>
+  <div class="cg cg2">
+    <div>
+      <div class="fg"><label class="fl">Observed Sharpe (annualised)</label><input class="fi" type="number" id="dsrSR" value="1.8" step="0.1" oninput="cDSR()"></div>
+      <div class="fg"><label class="fl">Number of trials run (M)</label><input class="fi" type="number" id="dsrM" value="100" step="1" oninput="cDSR()"></div>
+      <div class="fg"><label class="fl">Sample size N (return observations)</label><input class="fi" type="number" id="dsrN" value="250" step="1" oninput="cDSR()"></div>
+      <div class="fg"><label class="fl">Skewness of returns</label><input class="fi" type="number" id="dsrSkew" value="0" step="0.1" oninput="cDSR()"></div>
+      <div class="fg"><label class="fl">Kurtosis of returns (3 = normal)</label><input class="fi" type="number" id="dsrKurt" value="3" step="0.1" oninput="cDSR()"></div>
+    </div>
+    <div>
+      <div class="dsr-result" id="dsrOut"></div>
+      <p style="font-size:11.5px;color:var(--dim);margin-top:12px;line-height:1.55">If you tested 100 parameter variants and selected the best Sharpe of 1.8 on 250 observations, your DSR may be far below 95%. The "best result from many" is not the same as "a real edge".</p>
+    </div>
+  </div></div>`;
+  main.appendChild(tc);
+  cDSR();
+}
+function _erf(x){
+  const a1=0.254829592,a2=-0.284496736,a3=1.421413741,a4=-1.453152027,a5=1.061405429,p=0.3275911;
+  const sign = x < 0 ? -1 : 1;
+  x = Math.abs(x);
+  const t = 1/(1+p*x);
+  const y = 1 - (((((a5*t + a4)*t) + a3)*t + a2)*t + a1)*t * Math.exp(-x*x);
+  return sign*y;
+}
+function _phi(x){ return 0.5 * (1 + _erf(x/Math.SQRT2)); }
+window.cDSR = function(){
+  const SR = parseFloat(document.getElementById('dsrSR').value)||0;
+  const M = Math.max(1, parseInt(document.getElementById('dsrM').value)||1);
+  const N = Math.max(2, parseInt(document.getElementById('dsrN').value)||2);
+  const skew = parseFloat(document.getElementById('dsrSkew').value)||0;
+  const kurt = parseFloat(document.getElementById('dsrKurt').value)||3;
+  const Emax = Math.sqrt(2 * Math.log(Math.max(M,1.01)));
+  const SE = Math.sqrt((1 - skew*SR + (kurt-1)/4 * SR*SR) / (N-1));
+  const z = (SR - Emax) / Math.max(SE, 1e-9);
+  const dsr = _phi(z) * 100;
+  const dsrClamp = Math.max(0, Math.min(100, dsr));
+  let interp, color;
+  if(dsr >= 95){ interp = 'Likely real edge survives the multiple-testing penalty.'; color = 'var(--green)'; }
+  else if(dsr >= 70){ interp = 'Suggestive but not conclusive. More data or fewer trials needed.'; color = 'var(--amber)'; }
+  else { interp = 'Result is consistent with selection bias. Treat with extreme caution.'; color = 'var(--red)'; }
+  document.getElementById('dsrOut').innerHTML = `
+    <div class="sl">Deflated Sharpe Ratio</div>
+    <div class="sv" style="color:${color}">${dsr.toFixed(1)}%</div>
+    <div class="dsr-bar"><div class="dsr-marker" style="left:${dsrClamp}%"></div></div>
+    <div style="font-size:13px;color:${color};font-weight:700">${interp}</div>
+    <div style="font-size:11px;color:var(--dim);margin-top:10px">E[max SR across ${M} trials] ≈ ${Emax.toFixed(2)} · Sharpe std error ≈ ${SE.toFixed(3)} · Z = ${z.toFixed(2)}</div>`;
+};
+setTimeout(injectDSRTab, 1000);
+
+// ---------- H. Z-score Mean Reversion in CSV Sandbox ----------
+// We monkey-patch the SMA evaluator dispatch to support a second strategy class.
+// Adds a strategy selector inside the CSV sandbox controls.
+
+function smaPrefixLocal(vals){const p=[0];for(const v of vals)p.push(p[p.length-1]+v);return p}
+function smaFromPrefixLocal(prefix,idx,len){if(idx<len-1)return null;return (prefix[idx+1]-prefix[idx+1-len])/len}
+
+window.evaluateZScoreStrategy = function(rows, cfg, prefixOverride){
+  const lookback = Math.max(5, cfg.lookback || 50);
+  const zEntry = Math.max(0.1, cfg.zEntry || 2.0);
+  const zExit = Math.max(0, cfg.zExit || 0.5);
+  if(rows.length < lookback + 30) throw new Error(`Need at least lookback (${lookback}) + 30 rows.`);
+  const closes = rows.map(r=>r.close);
+  const n = rows.length;
+  const net = Array(n).fill(0), gross = Array(n).fill(0), bench = Array(n).fill(0), turnover = Array(n).fill(0), pos = Array(n).fill(0);
+  // Pre-compute rolling mean and std
+  const means = Array(n).fill(null), stds = Array(n).fill(null);
+  let sum=0, sumSq=0;
+  for(let i=0;i<n;i++){
+    sum += closes[i]; sumSq += closes[i]*closes[i];
+    if(i >= lookback){ sum -= closes[i-lookback]; sumSq -= closes[i-lookback]*closes[i-lookback]; }
+    if(i >= lookback-1){
+      const m = sum/lookback;
+      const v = sumSq/lookback - m*m;
+      means[i] = m;
+      stds[i] = v > 0 ? Math.sqrt(v) : null;
+    }
+  }
+  let prevPos = 0, currentPos = 0;
+  for(let i=1;i<n;i++){
+    const ret = Math.log(closes[i]/closes[i-1]);
+    bench[i] = Number.isFinite(ret) ? ret : 0;
+    // signal at i-1 (no look-ahead)
+    const m = means[i-1], s = stds[i-1];
+    let target = currentPos;
+    if(m !== null && s !== null && s > 0){
+      const z = (closes[i-1] - m) / s;
+      // entry: long if z < -zEntry, short if z > zEntry
+      if(currentPos === 0){
+        if(z < -zEntry) target = 1;
+        else if(z > zEntry && cfg.side === 'longshort') target = -1;
+      } else {
+        // exit when |z| < zExit
+        if(Math.abs(z) < zExit) target = 0;
+      }
+    }
+    currentPos = target;
+    pos[i] = target;
+    const to = Math.abs(target - prevPos);
+    turnover[i] = to;
+    gross[i] = target * bench[i];
+    net[i] = gross[i] - to * (cfg.totalCostBps/10000);
+    prevPos = target;
+  }
+  const start = lookback;
+  const split = start + Math.floor((n-start)*cfg.trainPct);
+  const allOnes = Array(n).fill(1), allZeros = Array(n).fill(0);
+  const is = calcMetrics(net, pos, turnover, start, split, cfg.barsYear);
+  const oos = calcMetrics(net, pos, turnover, split, n, cfg.barsYear);
+  const all = calcMetrics(net, pos, turnover, start, n, cfg.barsYear);
+  const bhIS = calcMetrics(bench, allOnes, allZeros, start, split, cfg.barsYear);
+  const bhOOS = calcMetrics(bench, allOnes, allZeros, split, n, cfg.barsYear);
+  const bhAll = calcMetrics(bench, allOnes, allZeros, start, n, cfg.barsYear);
+  return { cfg, start, split, is, oos, all, bhIS, bhOOS, bhAll, net, gross, bench, turnover, pos, strategyType:'zscore_mr' };
+};
+
+// ---------- I. Random-entry baseline (added to results panel) ----------
+window.computeRandomBaseline = function(bench, pos, start, end, barsYear, paths){
+  paths = paths || (bench.length > 5000 ? 200 : 500);
+  // average absolute exposure
+  let posSum = 0, posCount = 0;
+  for(let i=start;i<end;i++){ if(Number.isFinite(pos[i])){ posSum += Math.abs(pos[i]); posCount++; } }
+  const expRate = posCount > 0 ? posSum/posCount : 0.5;
+  const sharpes = [];
+  for(let p=0; p<paths; p++){
+    const rndPos = Array(bench.length).fill(0);
+    for(let i=start;i<end;i++){
+      if(Math.random() < expRate){ rndPos[i] = Math.random() < 0.5 ? 1 : -1; }
+    }
+    const m = calcMetrics(bench.map((b,i)=>rndPos[i]*b), rndPos, Array(bench.length).fill(0), start, end, barsYear);
+    sharpes.push(m.sharpe);
+  }
+  sharpes.sort((a,b)=>a-b);
+  const median = sharpes[Math.floor(sharpes.length/2)];
+  const p95 = sharpes[Math.floor(sharpes.length*0.95)];
+  return { median, p95, paths };
+};
+
+// ---------- J. Lesson evidence validation upgrade ----------
+// Patches markLessonPractice with stronger validation.
+const origMarkLP = window.markLessonPractice;
+if(typeof origMarkLP === 'function'){
+  window.markLessonPractice = function(ph, idx){
+    const id = 'les_'+ph+'_'+idx;
+    const refl = (document.getElementById(id+'_reflection')?.value||'').trim();
+    const ev = (document.getElementById(id+'_evidence')?.value||'').trim();
+    const msg = document.getElementById(id+'_msg');
+    function fail(t){ if(msg){ msg.className='practice-msg no'; msg.textContent=t; } return false; }
+    // Existing length checks remain, plus content sanity:
+    if(refl.length >= 30 && ev.length >= 60){
+      // Content checks: discourage lorem ipsum and pure repetition
+      const evLower = ev.toLowerCase();
+      if(/lorem ipsum|asdf|qwerty|test test test|aaaa+|xxxx+/.test(evLower)){
+        return fail('Evidence text looks like placeholder. Write the actual calculation, table, or applied example.');
+      }
+      // Distinct word ratio - very low ratio suggests copy-paste padding
+      const words = ev.split(/\s+/).filter(Boolean);
+      const distinct = new Set(words.map(w=>w.toLowerCase().replace(/[^a-z0-9]/g,''))).size;
+      if(words.length >= 20 && distinct/words.length < 0.35){
+        return fail('Evidence has very low vocabulary diversity. Rewrite with specific content rather than padding.');
+      }
+      // For risk/sizing/cost lessons, require a number
+      const lessonTitle = ((window.L && window.L[ph] && window.L[ph][idx]) || {}).t || '';
+      if(/risk|size|cost|var|kelly|sharpe|drawdown|spread|slippage|position/i.test(lessonTitle)){
+        if(!/[0-9]/.test(ev)){
+          return fail('This lesson is quantitative — your evidence must include at least one number (calculation, percent, currency).');
+        }
+      }
+    }
+    return origMarkLP.apply(this, arguments);
+  };
+}
+
+// ---------- K. Honest dashboard subtitle ----------
+function updateDashHero(){
+  const hero = document.querySelector('.dash-hero h1');
+  const heroP = document.querySelector('.dash-hero p');
+  if(hero) hero.textContent = 'A research-first trading curriculum and strategy-rejection sandbox.';
+  if(heroP) heroP.textContent = 'SwingQuant teaches the mechanics, statistics, and research hygiene that pro quants use, and gives you tools to pressure-test ideas before they touch real capital. It does not provide signals, guarantee profitability, or replace professional research infrastructure. Most users will not become profitable traders — most strategies do not survive honest scrutiny. Both of those facts are by design.';
+}
+setTimeout(updateDashHero, 500);
+
+// Add "Next action" panel logic
+function nextActionText(){
+  try{
+    const snap = (typeof evidenceSnapshot==='function') ? evidenceSnapshot() : null;
+    if(!snap) return 'Take the Phase 0 quiz to confirm market mechanics.';
+    if(snap.quizzes < 1) return 'Take the Phase 0 quiz — confirm you understand basic mechanics.';
+    if(snap.lessons < 5) return 'Save evidence on 5 lessons before unlocking practical tools.';
+    if(snap.csv < 1) return 'Run your first CSV research test in the Sandbox.';
+    if(snap.cr < 70) return 'Submit a strategy idea to the Strategy Review for adversarial scoring.';
+    if(snap.behavioural < 3) return 'Log at least 3 behavioural-mistake reviews. Your operator quality matters as much as your strategy.';
+    if(snap.oos < 3) return 'Run walk-forward validation on 3 different ideas.';
+    return 'Audit your weakest evidence category — reading more does not progress you.';
+  }catch{ return 'Open the Pathways page and pick a starting route.'; }
+}
+
+function injectNextAction(){
+  const dashCmd = document.querySelector('.dash-command-grid');
+  if(!dashCmd) return;
+  let panel = document.getElementById('nextActionPanel');
+  if(!panel){
+    panel = document.createElement('div');
+    panel.id = 'nextActionPanel';
+    panel.className = 'cd';
+    panel.style.gridColumn = '1 / -1';
+    dashCmd.appendChild(panel);
+  }
+  panel.innerHTML = `<h3 style="color:var(--gold);font-size:15px;margin-bottom:8px">🎯 Single next action</h3>
+    <p style="font-size:14px;color:var(--text);margin-bottom:6px">${nextActionText()}</p>
+    <p style="font-size:11.5px;color:var(--dim)">Doing one thing well beats browsing five things badly. The system is designed around bottleneck-driven progress.</p>`;
+}
+setTimeout(injectNextAction, 700);
+const origRDash2 = window.rDash;
+if(typeof origRDash2 === 'function'){
+  const prev = window.rDash;
+  window.rDash = function(){
+    prev.apply(this, arguments);
+    setTimeout(injectNextAction, 50);
+  };
+}
+
+// ---------- L. Hide deprecated v28 self-audit page ----------
+const auditPage = document.getElementById('pg-audit28');
+if(auditPage){
+  auditPage.innerHTML = `<div class="cd"><h3 style="color:var(--gold)">Capability Audit (deprecated)</h3>
+  <p style="font-size:13px;color:var(--muted)">This meta-audit page has been deprecated. SwingQuant\u2019s capability is what the rest of the curriculum demonstrates — a separate self-rating page added noise without information.</p></div>`;
+}
+
+// ---------- M. Print-friendly version flag ----------
+console.info('SwingQuant v36 enhancements loaded.');
+
+})(); // end v36
+
+</script>
+
+<script>
+/* ============================================================
+   v37 — layout fix runtime, curriculum consolidation,
+   honest dashboard, Path-to-Profitable readiness pipeline
+   ============================================================ */
+(function v37(){
+console.info('SwingQuant v37 enhancements loading...');
+
+// ---------- A. Runtime layout repair ----------
+// Belt-and-braces: detect any .pg elements that ended up outside <main class="mn">
+// and move them in. Prevents the "starts way down / hidden behind sidebar" bug.
+function repairOrphanPages(){
+  const main = document.querySelector('main.mn');
+  if(!main) return;
+  let moved = 0;
+  document.querySelectorAll('.pg').forEach(pg=>{
+    if(!main.contains(pg)){
+      main.appendChild(pg);
+      moved++;
+    }
+  });
+  if(moved) console.info('v37 repair: moved '+moved+' orphan page(s) into <main>');
+}
+// Run repair at multiple stages because the v28 init is async
+repairOrphanPages();
+setTimeout(repairOrphanPages, 100);
+setTimeout(repairOrphanPages, 500);
+setTimeout(repairOrphanPages, 1500);
+setTimeout(repairOrphanPages, 3000);
+
+// Observe DOM mutations to catch any future orphan inserts
+try{
+  const body = document.body;
+  if(body){
+    const mo = new MutationObserver(muts=>{
+      let needsRepair = false;
+      muts.forEach(m=>{
+        m.addedNodes && m.addedNodes.forEach(n=>{
+          if(n.nodeType===1 && n.classList && n.classList.contains('pg')){
+            const main = document.querySelector('main.mn');
+            if(main && !main.contains(n)) needsRepair = true;
+          }
+        });
+      });
+      if(needsRepair) repairOrphanPages();
+    });
+    mo.observe(body, { childList:true, subtree:true });
+  }
+}catch(e){ console.warn('MutationObserver setup failed', e); }
+
+// ---------- B. Page top-padding + sticky topbar normalisation ----------
+// Force every .pg to start cleanly below the topbar with consistent padding.
+const styleFix = document.createElement('style');
+styleFix.textContent = `
+.pg{padding:32px!important;min-height:calc(100vh - 60px)}
+.mn{display:flex;flex-direction:column}
+.mn > .tb{flex-shrink:0}
+.mn > .pg{flex:1}
+@media(max-width:800px){
+  .pg{padding:20px!important}
+}
+/* Ensure the disclaimer sits below content, not floating */
+.disc{margin-top:0;clear:both}
+/* Smooth scroll to top of page on nav change */
+html{scroll-behavior:smooth}
+/* Path to profitable widget */
+.pp-stage{background:var(--card);border:1px solid var(--card-border);border-radius:var(--r);padding:18px;margin-bottom:14px;position:relative;overflow:hidden}
+.pp-stage:before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--card-border)}
+.pp-stage.done:before{background:var(--green)}
+.pp-stage.active:before{background:var(--gold)}
+.pp-stage.locked{opacity:.6}
+.pp-stage.locked:before{background:var(--dim)}
+.pp-stage h3{font-size:16px;color:white;margin-bottom:4px}
+.pp-stage .pp-sub{font-size:11px;color:var(--gold);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px}
+.pp-criteria{display:grid;gap:6px;margin:10px 0}
+.pp-crit{display:flex;align-items:flex-start;gap:8px;font-size:13px;line-height:1.5}
+.pp-crit-mark{flex-shrink:0;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800}
+.pp-crit-mark.ok{background:rgba(34,197,94,.18);color:var(--green)}
+.pp-crit-mark.no{background:rgba(239,68,68,.12);color:var(--red)}
+.pp-progress{display:flex;align-items:center;gap:8px;margin-top:10px}
+.pp-progress-bar{flex:1;height:6px;background:var(--input);border-radius:3px;overflow:hidden}
+.pp-progress-fill{height:100%;background:var(--grad-gold);transition:width .3s}
+.pp-gate{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.25);border-left:4px solid var(--red);border-radius:var(--rs);padding:12px;font-size:13px;color:var(--muted);margin-top:10px}
+.pp-gate.pass{background:rgba(34,197,94,.07);border-color:rgba(34,197,94,.25);border-left-color:var(--green)}
+.pp-gate strong{color:var(--text)}
+`;
+document.head.appendChild(styleFix);
+
+// Patch go() so navigating scrolls main to top (fixes "page starts halfway")
+const origGo = window.go;
+window.go = function(id){
+  try{ origGo.apply(this, arguments); }catch(e){console.warn('go() error', e);}
+  // Force scroll to top of viewport AND of any scroll-internal main element
+  setTimeout(()=>{
+    window.scrollTo({top:0, behavior:'instant'});
+    const main = document.querySelector('main.mn');
+    if(main) main.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, 10);
+};
+
+// ---------- C. Curriculum consolidation: hide redundant sidebar items ----------
+// "Lessons" and "Academy" are the canonical learn flow. The v28 layer
+// duplicates with overlap. Hide the redundant nav items.
+function consolidateNav(){
+  const hideTargets = [
+    'learn10',      // 10/10 Learning System (now Evidence-Gated)
+    'archetypes',   // duplicated by Strategy Builder context
+    'robustness',   // duplicated by Sandbox walk-forward
+    'execution28',  // duplicated by Practice Tracker + lessons
+    'fundedch',     // duplicated, low value standalone
+    'progression',  // overlaps with dashboard evidence panel
+    'audit28',      // self-audit page (deprecated in v36)
+    'fund',         // alias of fundedch
+    'edge',         // edge creation lab - keep optional
+    'forward',     // empty placeholder in v35
+    'statpsy'      // empty placeholder
+  ];
+  hideTargets.forEach(t=>{
+    document.querySelectorAll(`.ni[data-p="${t}"]`).forEach(el=>{
+      el.style.display='none';
+    });
+  });
+  // Rename "Academy" to "Curriculum" for clarity (it's the canonical entry to lessons)
+  const academyEl = document.querySelector('.ni[data-p="academy"]');
+  if(academyEl){
+    const txtNode = [...academyEl.childNodes].find(n=>n.nodeType===3 && n.textContent.trim());
+    if(txtNode) txtNode.textContent = 'Curriculum';
+  }
+  // Make "Lessons" appear under Academy as a secondary action with subtle styling
+  const lessonEl = document.querySelector('.ni[data-p="lesson"]');
+  if(lessonEl){
+    lessonEl.style.opacity = '0.7';
+    lessonEl.style.fontSize = '12px';
+    const txtNode = [...lessonEl.childNodes].find(n=>n.nodeType===3 && n.textContent.trim());
+    if(txtNode) txtNode.textContent = ' └ Lessons';
+  }
+  // Hide deprecated capability audit nav if it appears
+  document.querySelectorAll('.ni').forEach(el=>{
+    const txt = (el.textContent||'').trim();
+    if(/capability audit|brutal audit|10\/10/i.test(txt)){
+      el.style.display = 'none';
+    }
+  });
+}
+setTimeout(consolidateNav, 100);
+setTimeout(consolidateNav, 800);
+setTimeout(consolidateNav, 2000);
+
+// ---------- D. PATH TO PROFITABLE — readiness pipeline ----------
+// This is the single biggest UX/value addition in v37: a linear track
+// from "have an idea" → "profitable live trading" with objective gates.
+
+const PIPELINE_STAGES = [
+  {
+    id: 'stage_research',
+    title: 'Stage 1 — Research evidence',
+    sub: 'Foundation',
+    minTimeMonths: 1,
+    description: 'Before forward simulation, the strategy must survive in-sample, out-of-sample, walk-forward, parameter sensitivity, cost stress, and benchmark comparison.',
+    criteria: [
+      { id:'c_hyp', label:'Written falsifiable hypothesis with economic mechanism (Strategy Builder)', check:()=>{const arr=JSON.parse(localStorage.getItem('squ_researchProtocols')||'[]');return arr.length>=1;} },
+      { id:'c_csv', label:'≥3 CSV walk-forward tests across different windows', check:()=>{const arr=JSON.parse(localStorage.getItem('squ_csvTests')||'[]');return arr.filter(x=>x.type==='walk-forward').length>=3;} },
+      { id:'c_cr', label:'Strategy Review score ≥75/100 with cost & kill-switch specifics', check:()=>{return (parseInt(localStorage.getItem('squ_crScore'))||0)>=75;} },
+      { id:'c_quiz', label:'Phase quizzes passed: ≥10 (concept fluency)', check:()=>{const s=JSON.parse(localStorage.getItem('squ_st')||'{}');return Object.values(s.qzS||{}).filter(v=>v>=85).length>=10;} },
+      { id:'c_lock', label:'Specialisation locked: one market, one timeframe, one archetype', check:()=>{return localStorage.getItem('squ_v28_spec_v1')!==null && localStorage.getItem('squ_v28_spec_v1')!=='null';} }
+    ],
+    gateMessage: 'A strategy that has not survived these checks should not be forward-tested. Forward testing burns months of calendar time — only spend it on ideas that have already passed adversarial review.'
+  },
+  {
+    id: 'stage_forward',
+    title: 'Stage 2 — Forward simulation',
+    sub: 'Time-locked validation',
+    minTimeMonths: 3,
+    description: 'Trade the strategy on paper or smallest-possible-size for at least 3 calendar months. The point is to see if realised edge matches researched edge in real conditions, with real spreads and real psychology.',
+    criteria: [
+      { id:'c_logged', label:'≥30 forward trades logged with attribution notes', check:()=>{const arr=JSON.parse(localStorage.getItem('squ_bt')||'[]');return arr.filter(x=>(x.note||'').length>=20).length>=30;} },
+      { id:'c_review', label:'≥20 trade reviews tagged with rule-break / behavioural attribution', check:()=>{const arr=JSON.parse(localStorage.getItem('squ_bt')||'[]');return arr.filter(x=>/mistake|late|early|slippage|oversize|overtrade|fomo|revenge|tilt|rule|breach|emotion|discipline/i.test(x.note||'')).length>=20;} },
+      { id:'c_journal', label:'≥10 journal entries covering hypothesis, regime, model failures', check:()=>{const arr=JSON.parse(localStorage.getItem('squ_journal')||'[]');return arr.length>=10;} },
+      { id:'c_riskplan', label:'Risk plan acknowledged (Risk Engine)', check:()=>{return localStorage.getItem('squ_riskPlanDone')==='true';} },
+      { id:'c_psychc', label:'Psychology contract signed', check:()=>{const c=localStorage.getItem('squ_v29_psyContract');return c && c!=='null' && c!=='""';} }
+    ],
+    gateMessage: 'You need at least 3 months of dated forward-trade evidence with rule-break tagging before scaling. If your forward edge is materially below your researched edge, the strategy is the problem — and increasing size will not fix it.'
+  },
+  {
+    id: 'stage_live_small',
+    title: 'Stage 3 — Live, small size',
+    sub: 'Real money discipline test',
+    minTimeMonths: 3,
+    description: 'Trade the smallest viable size (or smallest funded prop firm tier). Goal is not profit. Goal is to prove you execute the system the same way under real money psychology.',
+    criteria: [
+      { id:'c_live30', label:'≥30 live small-size trades logged', check:()=>{const arr=JSON.parse(localStorage.getItem('squ_bt')||'[]');return arr.length>=30;} },
+      { id:'c_drift', label:'Live Sharpe within 60% of researched OOS Sharpe (no manual override)', check:()=>{return false;} /* requires forward tracker, not yet built */ },
+      { id:'c_rules', label:'<10% of trades broke documented rules', check:()=>{const arr=JSON.parse(localStorage.getItem('squ_bt')||'[]');if(arr.length<10)return false;const breaks=arr.filter(x=>/rule|breach|broke|broken|override|mistake/i.test(x.note||'')).length;return arr.length>0 && breaks/arr.length < 0.10;} },
+      { id:'c_dd_ok', label:'Survived a drawdown without quitting or strategy-hopping', check:()=>{return localStorage.getItem('squ_v37_survived_dd')==='1';} }
+    ],
+    gateMessage: 'Most retail traders blow up here, not because the strategy fails but because they break rules under live-money pressure. If you cannot follow your own rules at small size, larger size will only make the failure faster.'
+  },
+  {
+    id: 'stage_scale',
+    title: 'Stage 4 — Cautious scaling',
+    sub: 'Capacity and capital growth',
+    minTimeMonths: 6,
+    description: 'Only after sustained discipline at small size do you scale. Even then: scale slowly, account for capacity limits, and accept that scaling may degrade edge.',
+    criteria: [
+      { id:'c_track', label:'≥6 months of consistent profitable live trading', check:()=>{return false;} /* honest gate */ },
+      { id:'c_capacity', label:'Capacity test: edge survives 2x size on same instruments', check:()=>{return false;} },
+      { id:'c_no_revenge', label:'Zero revenge trades in last 30 days', check:()=>{return localStorage.getItem('squ_v37_revenge_free_30')==='1';} },
+      { id:'c_book', label:'Multiple uncorrelated edges built (no single-strategy book)', check:()=>{const sp=localStorage.getItem('squ_v28_spec_v1');return false;} }
+    ],
+    gateMessage: 'The graveyard is full of traders who scaled too fast. Most pro funds scale slowly because capital impact is real. If you have not yet proven you can hold a profitable book through a real drawdown, you are not ready to size up.'
+  }
+];
+
+function evalStage(stage){
+  let passed = 0;
+  const results = stage.criteria.map(c=>{
+    let ok = false;
+    try{ ok = !!c.check(); }catch{ ok = false; }
+    if(ok) passed++;
+    return { ...c, ok };
+  });
+  return {
+    ...stage,
+    results,
+    passed,
+    total: stage.criteria.length,
+    isComplete: passed === stage.criteria.length
+  };
+}
+
+function getPipelineState(){
+  const evaluated = PIPELINE_STAGES.map(evalStage);
+  let activeIdx = evaluated.findIndex(s=>!s.isComplete);
+  if(activeIdx === -1) activeIdx = evaluated.length;
+  return evaluated.map((s,i)=>({
+    ...s,
+    state: i < activeIdx ? 'done' : i === activeIdx ? 'active' : 'locked'
+  }));
+}
+
+window.renderPathToProfitable = function(){
+  const c = document.getElementById('p2pC');
+  if(!c) return;
+  const stages = getPipelineState();
+  const active = stages.find(s=>s.state==='active');
+  const completedCount = stages.filter(s=>s.state==='done').length;
+  const totalMonthsMin = stages.reduce((sum,s)=>sum+s.minTimeMonths,0);
+
+  let html = `<div class="cd" style="margin-bottom:18px;background:linear-gradient(180deg,rgba(212,168,75,.07),rgba(17,17,24,.4)),var(--card)">
+    <div style="font-size:11px;color:var(--gold);text-transform:uppercase;letter-spacing:1.5px;font-weight:800">Trading readiness pipeline</div>
+    <h2 style="font-family:var(--f-head);font-size:30px;color:white;line-height:1.05;margin:6px 0 8px">There are no shortcuts.</h2>
+    <p style="color:var(--muted);font-size:13.5px;line-height:1.6">Most retail traders try to compress a 12-18 month process into 3 months and blow up. This pipeline forces calendar-time gates between stages because some forms of evidence cannot be rushed.</p>
+    <div style="display:flex;gap:16px;margin-top:14px;flex-wrap:wrap">
+      <div><strong style="font-family:var(--f-mono);color:var(--gold);font-size:18px">${completedCount}/${stages.length}</strong><span style="display:block;font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:1px">stages complete</span></div>
+      <div><strong style="font-family:var(--f-mono);color:var(--cyan);font-size:18px">${totalMonthsMin}+ months</strong><span style="display:block;font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:1px">minimum realistic timeline</span></div>
+      <div><strong style="font-family:var(--f-mono);color:var(--text);font-size:18px">${active ? active.title.split('—')[0].trim() : 'Complete'}</strong><span style="display:block;font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:1px">current stage</span></div>
+    </div>
+  </div>`;
+
+  stages.forEach((s,i)=>{
+    const pct = Math.round(s.passed/s.total*100);
+    const stageClass = s.state==='done' ? 'pp-stage done' : s.state==='active' ? 'pp-stage active' : 'pp-stage locked';
+    html += `<div class="${stageClass}">
+      <div class="pp-sub">${s.sub} · minimum ${s.minTimeMonths} month${s.minTimeMonths>1?'s':''}</div>
+      <h3>${s.title} ${s.state==='done'?'✓':s.state==='locked'?'🔒':''}</h3>
+      <p style="font-size:13px;color:var(--muted);line-height:1.55">${s.description}</p>
+      <div class="pp-criteria">`;
+    s.results.forEach(r=>{
+      html += `<div class="pp-crit"><span class="pp-crit-mark ${r.ok?'ok':'no'}">${r.ok?'✓':'·'}</span><span style="${r.ok?'color:var(--text)':'color:var(--muted)'}">${r.label}</span></div>`;
+    });
+    html += `</div>
+      <div class="pp-progress"><div class="pp-progress-bar"><div class="pp-progress-fill" style="width:${pct}%"></div></div><span style="font-size:12px;color:var(--muted)">${s.passed}/${s.total}</span></div>
+      <div class="pp-gate ${s.isComplete?'pass':''}"><strong>${s.isComplete?'Stage gate cleared.':'Stage gate:'}</strong> ${s.gateMessage}</div>
+    </div>`;
+  });
+
+  html += `<div class="cd" style="margin-top:20px"><h3 style="color:var(--gold);font-size:15px;margin-bottom:8px">Reality check</h3>
+    <p style="font-size:13px;color:var(--muted);line-height:1.65">This pipeline cannot guarantee profitability. What it does is filter out the failure modes that doom most retail traders: insufficient research, zero forward evidence, scaling too fast, and ignoring behavioural attribution. The criteria are deliberately strict because survivor bias makes the path look easier in hindsight than it is in real time.</p>
+    <p style="font-size:13px;color:var(--muted);line-height:1.65;margin-top:8px">If your honest assessment is that you cannot wait 12-18 months to do this right, the right action is not to skip stages — it is to ensure you have an income source that buys you the time. Trading from desperation is the most reliable way to lose money.</p>
+  </div>`;
+
+  c.innerHTML = html;
+};
+
+// Inject the page into nav and DOM
+function injectP2P(){
+  if(document.getElementById('pg-p2p')) return;
+  const main = document.querySelector('main.mn');
+  if(!main) return;
+  const sec = document.createElement('section');
+  sec.className = 'pg';
+  sec.id = 'pg-p2p';
+  sec.innerHTML = `<div class="sh"><div class="st">PATH TO PROFITABLE</div><div class="sd">A linear, calendar-time-gated pipeline from idea to consistent live trading. No stage can be skipped. No criteria can be brute-forced.</div></div><div id="p2pC"></div>`;
+  main.appendChild(sec);
+
+  // Add nav item near the top of sidebar (under Start Here)
+  const startHere = document.querySelector('.ni[data-p="pathways"]');
+  if(startHere && !document.querySelector('.ni[data-p="p2p"]')){
+    const n = document.createElement('div');
+    n.className = 'ni';
+    n.setAttribute('data-p','p2p');
+    n.onclick = function(){ go('p2p'); };
+    n.innerHTML = '<span class="ni-i">🛤</span>Path to Profitable<span class="ni-b" style="background:var(--purple)">CORE</span>';
+    n.style.borderLeft = '3px solid var(--purple)';
+    n.style.background = 'linear-gradient(90deg,rgba(139,92,246,.05),rgba(17,17,24,.6))';
+    startHere.parentNode.insertBefore(n, startHere.nextSibling);
+  }
+
+  // Hook into go() for this page
+  if(typeof PT !== 'undefined') PT.p2p = 'Path to Profitable';
+  const origGo2 = window.go;
+  window.go = function(id){
+    origGo2.apply(this, arguments);
+    if(id === 'p2p') setTimeout(renderPathToProfitable, 50);
+  };
+}
+setTimeout(injectP2P, 600);
+setTimeout(injectP2P, 2000);
+
+// ---------- E. Honest dashboard rewrite + P2P card ----------
+function injectP2PCardOnDashboard(){
+  if(document.getElementById('p2pDashCard')) return;
+  const dashCmd = document.querySelector('.dash-command-grid');
+  if(!dashCmd) return;
+  const card = document.createElement('div');
+  card.id = 'p2pDashCard';
+  card.className = 'cd';
+  card.style.gridColumn = '1 / -1';
+  card.style.background = 'linear-gradient(180deg,rgba(139,92,246,.07),rgba(17,17,24,.4)),var(--card)';
+  card.style.borderColor = 'rgba(139,92,246,.25)';
+  card.style.cursor = 'pointer';
+  card.onclick = function(){ go('p2p'); };
+
+  const stages = getPipelineState();
+  const completed = stages.filter(s=>s.state==='done').length;
+  const active = stages.find(s=>s.state==='active');
+  const activePct = active ? Math.round(active.passed/active.total*100) : 100;
+
+  card.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap">
+    <div>
+      <div style="font-size:11px;color:var(--purple);text-transform:uppercase;letter-spacing:1.5px;font-weight:800">Where you actually stand</div>
+      <h3 style="color:white;font-size:18px;margin:6px 0">Trading readiness pipeline</h3>
+      <p style="font-size:13px;color:var(--muted);line-height:1.55;max-width:600px">${completed}/${stages.length} stages complete. ${active ? `Currently in: <strong style="color:var(--gold)">${active.title.split('—')[0].trim()}</strong> — ${active.passed}/${active.total} criteria met.` : 'All stages complete — you are in the rare territory where most fail.'}</p>
+    </div>
+    <button class="btn btn-g" style="background:linear-gradient(135deg,#8B5CF6,#3B82F6);color:white">View pipeline →</button>
+  </div>
+  ${active ? `<div class="pp-progress" style="margin-top:14px"><div class="pp-progress-bar"><div class="pp-progress-fill" style="width:${activePct}%;background:linear-gradient(135deg,#8B5CF6,#3B82F6)"></div></div><span style="font-size:12px;color:var(--muted)">${activePct}%</span></div>` : ''}`;
+
+  dashCmd.appendChild(card);
+}
+setTimeout(injectP2PCardOnDashboard, 1200);
+const origRDash3 = window.rDash;
+if(typeof origRDash3 === 'function'){
+  const prev = window.rDash;
+  window.rDash = function(){
+    prev.apply(this, arguments);
+    setTimeout(injectP2PCardOnDashboard, 100);
+  };
+}
+
+// ---------- F. Behavioural flags - manual triggers ----------
+window.sqMarkSurvivedDD = function(){
+  if(confirm('Mark that you survived a drawdown without quitting or changing strategy mid-stream. Only check this off honestly — the system has no way to verify.')){
+    localStorage.setItem('squ_v37_survived_dd', '1');
+    if(typeof renderPathToProfitable === 'function') renderPathToProfitable();
+    alert('Marked. The pipeline updates accordingly.');
+  }
+};
+window.sqMarkRevengeFree = function(){
+  if(confirm('Confirm: zero revenge trades in the last 30 days, by your own honest accounting?')){
+    localStorage.setItem('squ_v37_revenge_free_30', '1');
+    localStorage.setItem('squ_v37_revenge_free_30_at', new Date().toISOString());
+    if(typeof renderPathToProfitable === 'function') renderPathToProfitable();
+    alert('Marked. Note: this auto-resets after 30 days from the date you set it.');
+  }
+};
+// Auto-expire revenge-free flag
+(function(){
+  const at = localStorage.getItem('squ_v37_revenge_free_30_at');
+  if(at){
+    const days = (Date.now() - new Date(at).getTime()) / 86400000;
+    if(days > 30){
+      localStorage.removeItem('squ_v37_revenge_free_30');
+      localStorage.removeItem('squ_v37_revenge_free_30_at');
+    }
+  }
+})();
+
+// ---------- G. Updated honest dashboard hero ----------
+function rewriteDashHeroV37(){
+  const heroH1 = document.querySelector('.dash-hero h1');
+  const heroP = document.querySelector('.dash-hero p');
+  const heroPills = document.querySelector('.dash-hero .pill-row');
+  if(heroH1) heroH1.textContent = 'Most strategies fail honest scrutiny. This tool helps you find out which.';
+  if(heroP){
+    heroP.innerHTML = 'SwingQuant gives you a quant-research curriculum, an idea-rejection sandbox, a behavioural journal, and a calendar-time-gated pipeline from research to live trading. It does not provide signals. It does not promise profitability. The most useful thing it does is tell you when you are <em>not</em> ready, which is most of the time, including for most experienced traders.';
+  }
+  if(heroPills){
+    heroPills.innerHTML = '<span class="pill">Evidence over confidence</span><span class="pill">Calendar-time gates</span><span class="pill">No shortcuts</span><span class="pill">Realistic 12-18 month timeline</span>';
+  }
+}
+setTimeout(rewriteDashHeroV37, 800);
+
+// ---------- H. Better journal prompts ----------
+// Replace generic placeholder text with prompt-style scaffolding for common
+// failure modes — reduces blank-page paralysis and surfaces useful patterns.
+const JOURNAL_PROMPTS = {
+  'Hypothesis': 'Edge mechanism (why should this exist?):\nMarket / instrument / timeframe:\nEntry condition:\nExit condition:\nWhat would prove this idea wrong:\nMinimum sample size before reviewing:',
+  'Model Failure': 'What was expected (researched):\nWhat actually happened (realised):\nFailure mode (regime change / cost / leakage / overfitting / execution):\nIs this a kill-switch event or normal variance:\nNext action:',
+  'Execution Note': 'Trade details (instrument, side, size):\nEntry vs decision price (slippage):\nDeparture from rules (yes/no, what):\nProcess grade (1-10):\nSpecific improvement for next trade:',
+  'Regime Note': 'Current regime (trend up/down/range/volatile):\nKey indicators driving classification:\nWhich strategies should perform / underperform here:\nWhat would change the regime:\nDecision impact:',
+  'Post-Trade Attribution': 'Outcome (P&L in R, win/loss):\nWhat I expected vs what happened:\nWas the outcome process-driven or random:\nRule breaks (yes/no, which):\nWhat I would do differently:'
+};
+function patchJournalPrompts(){
+  const sel = document.getElementById('jCat');
+  const ta = document.getElementById('jTxt');
+  if(!sel || !ta || sel.dataset.v37patched) return;
+  sel.dataset.v37patched = '1';
+  const update = ()=>{
+    const cat = sel.value;
+    if(JOURNAL_PROMPTS[cat] && !ta.value.trim()){
+      ta.placeholder = JOURNAL_PROMPTS[cat];
+    }
+  };
+  sel.addEventListener('change', update);
+  update();
+}
+setTimeout(patchJournalPrompts, 1500);
+
+// ---------- I. Final repair pass ----------
+setTimeout(()=>{
+  repairOrphanPages();
+  consolidateNav();
+  console.info('SwingQuant v37 enhancements loaded.');
+}, 2500);
+
+})(); // end v37
+</script>
 </body>
 </html>
